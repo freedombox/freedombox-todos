@@ -1,0 +1,476 @@
+# -*- mode: org; mode: auto-fill; fill-column: 80 -*-
+
+#+TODO: TODO(t) WAIT(w@/!) | DONE(d!) CANCELED(c@)
+
+* Introduction
+  
+  This is an integrated TODO list for the FreedomBox project, compiling todos
+  from each of the included projects.
+
+  This file lives in a few repositories:
+
+  - https://github.com/NickDaly/freedombox-todos
+  - https://gitorious.org/freedombox-todos
+
+** Projects
+
+   This section lists each of the projects tracked in this TODO list along with
+   any known repositories for those projects.
+
+*** Freedom Maker
+
+    Freedom Maker (FM) is the central hub of the FreedomBox project, it builds
+    and installs the file-system image that turns any computer into a
+    FreedomBox.
+
+    Bdale Garbee's master branch is the current root.
+
+    - [[http://anonscm.debian.org/gitweb/?p%3Dfreedombox/freedom-maker.git][Bdale Garbee's Branch]]
+    - [[https://github.com/NickDaly/freedom-maker/][Nick Daly's Branch]]
+
+*** Plinth
+
+    Plinth is a web front end for administering every aspect of a Freedom Box.
+
+    James Vasile's master branch is the current root.
+
+    - [[https://github.com/jvasile/plinth][James Vasile's Branch]]
+    - [[https://github.com/NickDaly/plinth][Nick Daly's Branch]]
+
+*** ExMachina
+
+    ExMachina is the shim between any frontends and system-level configuration
+    tasks.
+
+    Bryan Newbold's master branch is the current root.
+
+    - [[http://github.com/bnewbold/exmachina][Bryan Newbold's Branch]]
+    - [[https://gitorious.org/exmachina][Gitorious Project]]
+
+*** FreedomBuddy
+
+    FreedomBuddy manages service discovery between FreedomBoxes, coordinating
+    connections between friendly servers for any service.
+
+    Nick Daly's master branch is the current root.
+
+    - [[https://github.com/NickDaly/freedombuddy][Nick Daly's Branch]]
+    - [[https://github.com/tomgalloway/freedombuddy][Tom Galloway's Branch]]
+    - [[https://gitorious.org/freedombuddy][Gitoriousl Project]]
+
+*** FreedomBox Privoxy
+
+    FreedomBox Privoxy filters out privacy threats and advertising for users
+    while they browse the Internet.
+
+    James Vasile's master branch is the current root.
+
+    - [[https://github.com/jvasile/freedombox-privoxy][James Vasile's Branch]]
+    - [[https://github.com/NickDaly/freedombox-privoxy][Nick Daly's Branch]]
+    - [[https://www.gitorious.org/freedombox-privoxy][Gitorious Project]]
+
+*** With SQLite
+
+    With SQLite uses an SQLite database as a dictionary in Python.
+
+    James Vasile's master branch is the current root.
+
+    - [[https://github.com/jvasile/withsqlite][James Vasile's Branch]]
+
+*** Publish
+
+    Publish publishes projects in the simplest ways possible.
+
+    Nick Daly's master branch is the current root.
+
+    - https://gitorious.org/project-publish
+
+*** Key Report
+
+    Mentions keys that will expire soon.
+
+    Nick Daly's master branch is the current root.
+
+    - https://gitorious.org/key-report/
+    - https://github.com/NickDaly/key-report/
+
+* FreedomBox 1.0 [1/7]
+
+  A dedicated hacker's release.  All the pieces are there, but not necessarily
+  integrated as well as they should be.
+
+** TODO Infrastructure [0/1]
+
+*** TODO Start Gluing Pieces Together
+    
+    At least some projects should work with Plinth and use the LDAP backend.
+
+** DONE Key Report [1/1]
+   CLOSED: [2013-08-01 Thu 22:13]
+   - State "DONE"       from "TODO"       [2013-08-01 Thu 22:13]
+
+*** DONE Create Key/Cert Expiry Reporting Tools
+    CLOSED: [2013-08-01 Thu 22:13]
+    - State "DONE"       from "TODO"       [2013-08-01 Thu 22:13]
+
+    [[file:key-report/key-report.py]]
+
+** TODO FreedomBuddy [2/5]
+
+*** TODO Finish Basic FreedomBuddy Functionality [0/2]
+
+**** TODO Finish Introduction System
+
+     1. Sender exports public key to file.
+     2. Sender exports signed location message to file.
+     3. Sender archives both files.
+     4. Sender and receiver exchange the archive.
+     5. Receiver unpacks the archive.
+     6. Receiver imports public key.
+     7. Receiver verifies and imports signed location message.
+
+**** TODO Add Default Services [0/3]
+
+     Make a default set of services available to make it easy for folks to start
+     hosting services for someone else.  It could be a sort of "add a new user"
+     wizard that sets the default services and creates the introduction message
+     archive.
+
+***** TODO Load Default Services
+
+      If default services aren't found in the saved data, they're read from the
+      config file.
+
+***** TODO Reject "Default" Key Updates
+
+      The "Default" key is a special, protected, key (maybe 0, maybe "default")
+      for which all external service updates are rejected, in the same way the
+      "-update-time" service suffix is protected.
+
+***** TODO Copy Default Services when Adding a New Key
+
+      The services you want to host for other people are copied to their service
+      list whenever a new key is added.
+
+*** TODO Write FreedomBuddy Threat Model
+    :PROPERTIES:
+    :Attachments: fbuddy-threat-model
+    :ID:       fc7e9d5e-7db7-4b7c-9efa-f5ca23d0eff5
+    :END:
+  
+    - http://wiki.openitp.org/peerreviewboard:start
+  
+    - [[file:data/fc/7e9d5e-7db7-4b7c-9efa-f5ca23d0eff5/fbuddy-threat-model.org][FreedomBuddy Threat Model]]
+
+*** TODO Add Contracts to functions.
+
+    Use PyContract to verify functional contracts.
+
+*** DONE Finish FreedomBuddy UI
+    CLOSED: [2013-07-28 Sun 14:12]
+    - State "DONE"       from "TODO"       [2013-07-28 Sun 14:12]
+
+*** CANCELED Move ./build dependencies to ../
+    CLOSED: [2013-07-28 Sun 14:12]
+    - State "CANCELED"   from "TODO"       [2013-07-28 Sun 14:12] \\
+      Fixing dependency duplication for FBuddy specifically is worth less
+      than moving to .debs, and will break FBuddy for non-FBX installs,
+      anyway.
+
+    This'll help unify the dependencies at the file level.
+
+    Might not be worth it, as everything's moving to .debs soon.
+
+** TODO Plinth [2/7]
+
+*** TODO Integrate Tinc into Plinth [0/1]
+
+**** TODO Tinc Testing
+
+     http://www.vanheusden.com/linux/tinc_mini_howto.html
+
+*** TODO Provide CherryPy through Apache
+
+*** TODO Don't POST password... EVER.
+
+    We currently post on login fails.
+
+*** TODO CherryPy HTTPRedirects Shouldn't Go To 127.0.0.1
+
+    They shouldn't change the server's name.
+
+*** TODO Include missing dependencies. [3/4]
+    - State "DONE"       from "TODO"       [2013-07-28 Sun 20:14]
+
+    - [X] psmisc
+    - [X] python2.7
+    - [X] libpython2.7
+    - [ ] sudo
+
+*** DONE Move /build to /vendor
+    CLOSED: [2013-07-28 Sun 20:15]
+    - State "DONE"       from "TODO"       [2013-07-28 Sun 20:12]
+
+    Do it for consistency with freedombox-privoxy and freedom-maker.
+
+    Update references in:
+
+    - plinth/start.sh
+    - plinth/Makefile
+
+*** CANCELED Move ./build dependencies to ../
+    CLOSED: [2013-07-28 Sun 14:12]
+    - State "CANCELED"   from "TODO"       [2013-07-28 Sun 14:12] \\
+      Fixing dependency duplication for FBuddy specifically is worth less
+      than moving to .debs, and will break FBuddy for non-FBX installs,
+      anyway.
+
+    This'll help unify the dependencies at the file level.
+
+    Might not be worth it, as everything's moving to .debs soon.
+
+** TODO Freedom Maker [2/11]
+
+*** TODO Make Freedom Maker Smarter
+
+    Do a better job of abstracting away devices into configuration options.  For
+    example, if we're building for a DreamPlug target, we should enable the
+    blink-blinkenlights option: the DreamPlug has LEDs we can use to signal to
+    the user), but that should be disabled for a RaspberryPi, as that
+    functionality isn't available at best (and might cause undefined behavior in
+    the Pi at worst).
+
+    Break out devices by type:
+
+    1. DreamPlug v1
+    2. RaspberryPi
+    3. VirtualBox Image
+
+*** TODO Add LDAP Backend
+
+*** TODO Improve USB Formatting [1/2]
+
+**** CANCELED Add usb formatting to FM's README
+     CLOSED: [2013-07-27 Sat 20:31]
+     - State "CANCELED"   from "TODO"       [2013-07-27 Sat 20:31] \\
+       If parted handles the image, we can simplify formatting a lot.
+
+**** TODO Move from USB image to .img with parted.
+
+     Parted's really useful.  This means we can forego using a USB device and
+     not need to mess with /etc/fstab at all.
+
+     [[file:freedom-maker/Makefile::image:%20$(STAMP)-rootfs-$(ARCHITECTURE)][file:freedom-maker/Makefile::image: $(STAMP)-rootfs-$(ARCHITECTURE)]]
+
+*** TODO Create target specific /etc/network/interfaces
+
+*** TODO Update the login message to mention passwords and intro file.
+
+*** TODO Write an intro file so users can =less hello=
+
+    This will be the user's crash course to their freedombox.
+
+*** TODO Make Plinth Launch on Startup
+
+    - Make plinth in FM during image build process, or,
+
+    - Build some giant startup script to run Plinth that handles everything:
+
+      - make-ing plinth
+      - other requirements
+
+      Plinth's own start.sh should handle its own local installation, nothing
+      else.  The big script should probably assume ~/exmachina is available.
+
+*** TODO Get JWChat working. [0/2]
+
+**** TODO Suppport local server connections.
+
+**** TODO Suppport  server connections.
+
+*** TODO Add tcp tracker
+
+    #+begin_ascii
+      The tracker URL in the torrent file uses UDP, which is not universally
+      supported in Debian (bug #638194).
+    #+end_ascii
+
+*** TODO Add RaspberryPi target
+
+**** Notes
+
+***** [2013-06-30 Sun]
+
+      - [[https://github.com/asb/spindle][Spindle]] :: spindle is a set of scripts to aid building and working on a
+           distribution image.
+
+           I'm not crazy about this, it downloads blobs like:
+
+           http://asbradbury.org/tmp/raspi/simple-root-filesystem-armv6l.tar.bz2
+           http://asbradbury.org/tmp/raspi/system-image-armv6l.tar.bz2
+           http://asbradbury.org/tmp/raspi/dropbearmulti-armv6l
+
+      - [[http://www.aclevername.com/articles/linux-xilinx-tutorial/minimalist-initramfs.html][Minimalist Initramfs]] :: Instructions on building an initramfs.  Neato.
+
+      - [[http://www.raspbian.org/RaspbianDocumentation][Raspbian Documentation]] :: Good link list.
+
+      - [[https://github.com/Hexxeh/rpi-firmware][RaspberryPi Firmware]] :: ~60 MB Compiled Kernel + Firmware Blob.
+
+           Confusing: both GPL and not-GPL.  The copy of the GPL comes with an
+           interesting Linus-disclaimer.  No source available?
+
+***** [2013-07-20 Sat]
+
+      Lost my RPi.  I have the SD card and the power cord, but not the Pi itself.
+      This makes testing difficult.  Where the fuck did I put it?  Guess I buy a
+      new one?  Will do that tomorrow.
+
+**** Communications
+
+***** [2013-06-30 Sun]
+
+****** DONE Write Alex Bradbury <asb@asbradbury.org>
+       CLOSED: [2013-06-30 Sun 14:54]
+
+****** DONE Write Mike Thompson <mpthompson@gmail.com>
+       CLOSED: [2013-06-30 Sun 14:58]
+
+*** DONE Merge Freedom Maker Shiny into Master
+
+*** CANCELED Move /var and /home to external SD card?
+    CLOSED: [2013-07-27 Sat 20:53]
+    - State "CANCELED"   from "TODO"       [2013-07-27 Sat 20:53]
+
+    Not every device supports external storage anyway...  Just use a bigger
+    card.
+
+** TODO ExMachina [0/1]
+
+*** TODO Security Audit / Hammer Away at ExMachina
+
+** TODO Documentation [0/1]
+
+*** TODO Write Developer Documentation
+
+    Take the current state of the FBX and write up how to use all the parts
+    together.
+
+* FreedomBox 2.0 [0/7]
+
+  Generally Useful, includes service configuration and UI polish.
+
+  Infrastructure packages should be available in Debian Testing.
+
+** TODO Plinth [0/9]
+
+   Integrate more services.
+
+*** TODO Produce Plinth Debian Package
+
+    See freedombox-privoxy's "make_deb.sh".
+
+*** TODO Integrate OONI
+
+*** TODO Integrate Tor
+
+*** TODO Integrate Blog
+
+*** TODO Integrate Wiki
+
+*** TODO Integrate Friendica
+
+*** TODO Integrate FreedomBuddy
+
+*** TODO Add MAC Changer to Plinth
+
+    Bounce any/all active interfaces to come up with new MAC addresses.
+
+*** TODO Use Publish to publish Plinth's Source
+
+    That'd be useful and convenient, but should exclude the data directory.
+
+** TODO FreedomBuddy [0/6]
+
+*** TODO Finish FreedomBuddy UI
+
+*** TODO Move ./build dependencies to ../
+
+    This'll help reduce dependency duplication.
+
+    Might not be worth it, as everything's moving to .debs soon, anyway.
+
+*** TODO Create Debian Package
+
+*** TODO Split Message Parsing per Message Type
+
+    This will allow FBuddy to handle multiple encryption schemes.
+
+*** TODO Split Database Saving/Loading Code into Separate Module
+
+    Move the db code into /src/db/(modulename).py.
+
+    This'll allow us to support multiple database backends that we can
+    preferentially check for data.  LDAP first, shelf second, etc.
+
+*** TODO Add LDAP database backend
+
+** TODO FreedomMaker [0/5]
+
+*** TODO Add "get the wheezy signing key" to FM's README
+
+*** TODO Add fbx to /etc/sudoers?
+
+*** TODO Replace Spinifex Firmware with Libertas-fw package.
+
+*** TODO Debian-Package Freedom Maker
+
+*** TODO Novena Support
+
+** TODO Key Report [0/2]
+
+*** TODO Automatically write emails for critical and warning keys.
+
+*** TODO Package Key Report
+
+** TODO ExMachina [0/1]
+
+*** TODO Package ExMachina
+
+** TODO Infrastructure [0/5]
+
+*** TODO Use FreedomBuddy and/or Tinc to connect all services.
+
+*** TODO Glue Pieces Together
+
+*** TODO Deliver FreedomBox Debian Package
+
+*** TODO Improve GNUTLS
+
+*** TODO Improve Firefox to handle PGP-certified-X509-certs
+
+** TODO Documentation [0/4]
+
+*** TODO Clarify Authentication vs Authorization in the System
+
+*** TODO Clean up FBF Wiki
+
+*** TODO Coordinate End User Documentation
+
+*** TODO Update FBF.org Style for Butterfly Logo
+
+* FreedomBox 3.0 [0/0]
+
+  A generally usable consumer device.
+
+  Viable upgrade paths should exist between 2.0 and 3.0.
+
+* Theory [0/1]
+
+** TODO Think about trust ratings
+
+   Services can announce how much faith they have in each peer for any
+   particular purpose.  That'd be neat.
+
+   For example, if a service starts receiving updates from a peer that
+   have future time-stamps, it should signal that the peer has a screwy
+   clock.
