@@ -136,6 +136,15 @@
      wizard that sets the default services and creates the introduction message
      archive.
 
+     We need to create a "default" key that is loaded into the shelf only when
+     the shelf doesn't already contain a default service set.  That service set
+     should contain the current default services:
+
+     - http listener
+     - http sender
+     - http monitor
+     - cli monitor
+
 ***** TODO Load Default Services
 
       If default services aren't found in the saved data, they're read from the
