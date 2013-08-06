@@ -3,7 +3,7 @@
 #+TODO: TODO(t) WAIT(w@/!) | DONE(d!) CANCELED(c@)
 
 * Introduction
-  
+
   This is an integrated TODO list for the FreedomBox project, compiling todos
   from each of the included projects.
 
@@ -102,7 +102,7 @@
 ** TODO Infrastructure [0/1]
 
 *** TODO Start Gluing Pieces Together
-    
+
     At least some projects should work with Plinth and use the LDAP backend.
 
 ** DONE Key Report [1/1]
@@ -166,9 +166,9 @@
     :Attachments: fbuddy-threat-model
     :ID:       fc7e9d5e-7db7-4b7c-9efa-f5ca23d0eff5
     :END:
-  
+
     - http://wiki.openitp.org/peerreviewboard:start
-  
+
     - [[file:data/fc/7e9d5e-7db7-4b7c-9efa-f5ca23d0eff5/fbuddy-threat-model.org][FreedomBuddy Threat Model]]
 
 *** TODO Add Contracts to functions.
