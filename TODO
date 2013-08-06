@@ -238,38 +238,9 @@
 
     Might not be worth it, as everything's moving to .debs soon.
 
-** TODO Freedom Maker [2/11]
-
-*** TODO Make Freedom Maker Smarter
-
-    Do a better job of abstracting away devices into configuration options.  For
-    example, if we're building for a DreamPlug target, we should enable the
-    blink-blinkenlights option: the DreamPlug has LEDs we can use to signal to
-    the user), but that should be disabled for a RaspberryPi, as that
-    functionality isn't available at best (and might cause undefined behavior in
-    the Pi at worst).
-
-    Break out devices by type:
-
-    1. DreamPlug v1
-    2. RaspberryPi
-    3. VirtualBox Image
+** TODO Freedom Maker [2/13]
 
 *** TODO Add LDAP Backend
-
-*** TODO Improve USB Formatting [1/2]
-
-**** CANCELED Add usb formatting to FM's README
-     CLOSED: [2013-07-27 Sat 20:31]
-     - State "CANCELED"   from "TODO"       [2013-07-27 Sat 20:31] \\
-       If parted handles the image, we can simplify formatting a lot.
-
-**** TODO Move from USB image to .img with parted.
-
-     Parted's really useful.  This means we can forego using a USB device and
-     not need to mess with /etc/fstab at all.
-
-     [[file:freedom-maker/Makefile::image:%20$(STAMP)-rootfs-$(ARCHITECTURE)][file:freedom-maker/Makefile::image: $(STAMP)-rootfs-$(ARCHITECTURE)]]
 
 *** TODO Create target specific /etc/network/interfaces
 
@@ -290,12 +261,6 @@
 
       Plinth's own start.sh should handle its own local installation, nothing
       else.  The big script should probably assume ~/exmachina is available.
-
-*** TODO Get JWChat working. [0/2]
-
-**** TODO Suppport local server connections.
-
-**** TODO Suppport server connections.
 
 *** TODO Add tcp tracker
 
@@ -435,6 +400,12 @@
 
 *** TODO Novena Support
 
+*** TODO Get JWChat working. [0/2]
+
+**** TODO Suppport local server connections.
+
+**** TODO Suppport server connections.
+
 ** TODO Key Report [0/2]
 
 *** TODO Automatically write emails for critical and warning keys.
@@ -476,6 +447,47 @@
 * Unscheduled [0/0]
 
   These todo items aren't currently scheduled for any milestone.
+
+** FreedomMaker
+
+*** TODO Unify VirtualBox and Image Build Systems
+
+    The VBox image and filesystem image have completely separate dependency
+    lists.  That is bad.  Both images should pull in the same list of
+    dependencies to make sure they're functionally equivalent.
+
+    We'll need to parse the single dependency list for each image separately and
+    pass those to the dependency-getter (apt-get in one case, --package in the
+    other).  Unifying other pieces is also nice, but this is the most important.
+
+*** TODO Make Freedom Maker Smarter
+
+    Do a better job of abstracting away devices into configuration options.  For
+    example, if we're building for a DreamPlug target, we should enable the
+    blink-blinkenlights option: the DreamPlug has LEDs we can use to signal to
+    the user), but that should be disabled for a RaspberryPi, as that
+    functionality isn't available at best (and might cause undefined behavior in
+    the Pi at worst).
+
+    Break out devices by type:
+
+    1. DreamPlug v1
+    2. RaspberryPi
+    3. VirtualBox Image
+
+*** TODO Improve USB Formatting [1/2]
+
+**** CANCELED Add usb formatting to FM's README
+     CLOSED: [2013-07-27 Sat 20:31]
+     - State "CANCELED"   from "TODO"       [2013-07-27 Sat 20:31] \\
+       If parted handles the image, we can simplify formatting a lot.
+
+**** TODO Move from USB image to .img with parted.
+
+     Parted's really useful.  This means we can forego using a USB device and
+     not need to mess with /etc/fstab at all.
+
+     [[file:freedom-maker/Makefile::image:%20$(STAMP)-rootfs-$(ARCHITECTURE)][file:freedom-maker/Makefile::image: $(STAMP)-rootfs-$(ARCHITECTURE)]]
 
 * Theory [0/1]
 
