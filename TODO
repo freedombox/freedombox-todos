@@ -473,7 +473,13 @@
 
   Viable upgrade paths should exist between 2.0 and 3.0.
 
+* Unscheduled [0/0]
+
+  These todo items aren't currently scheduled for any milestone.
+
 * Theory [0/1]
+
+  These items need to be thought about more.
 
 ** TODO Think about trust ratings
 
