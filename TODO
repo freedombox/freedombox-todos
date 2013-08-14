@@ -5,7 +5,8 @@
 * Introduction
 
   This is an integrated TODO list for the FreedomBox project, compiling todos
-  from each of the included projects.
+  from each of the included projects.  Right now, we're trying to finish 1.0.
+  The 2.0 and 3.0 TODOs are not yet firm.
 
   This file lives in a few repositories:
 
@@ -94,7 +95,7 @@
     - https://gitorious.org/key-report/
     - https://github.com/NickDaly/key-report/
 
-* FreedomBox 1.0 [1/7]
+* FreedomBox 1.0 [1/9]
 
   A dedicated hacker's release.  All the pieces are there, but not necessarily
   integrated as well as they should be.
@@ -191,12 +192,6 @@
     Might not be worth it, as everything's moving to .debs soon.
 
 ** TODO Plinth [2/7]
-
-*** TODO Integrate Tinc into Plinth [0/1]
-
-**** TODO Tinc Testing
-
-     http://www.vanheusden.com/linux/tinc_mini_howto.html
 
 *** TODO Provide CherryPy through Apache
 
@@ -329,7 +324,74 @@
     Take the current state of the FBX and write up how to use all the parts
     together.
 
-* FreedomBox 2.0 [0/7]
+** TODO VPN Support [0/2]
+
+   When available, FreedomBoxes will construct VPNs to communicate between one
+   another.  It seems unlikely that all these VPNs will form a single, large,
+   network but, rather, that each FreedomBox will construct its own VPN network
+   by which it can reach all of its trusted peers.  This should help to prevent
+   non-mutually trusted peers from seeing one another and leaking the
+   social/network graph.
+
+   When VPNs aren't available, FreedomBuddy can still be used to create direct
+   connections over arbitrary networks.  However, this is less desirable as it
+   doesn't abstract away the network protocol and reqiures each application to
+   be able to use the protocol.  For example, if your browser doesn't understand
+   how to handle the webserver at gnunet://00000000, you're out of luck.  There
+   is still the option of just communicating directly over FreedomBuddy, but
+   that's a really roundabout way of doing things.
+
+   We should include a VPN system.  OpenSwan, Tinc, and librevpn appear to be
+   options.
+
+*** TODO Include OpenSwan
+
+    James recommended OpenSwan over the similar StrongSwan.
+
+*** TODO Include Tinc [0/1]
+
+**** TODO Validate Tinc's Suitability [0/4]
+
+     - [ ] Can Tinc work, now? :: Yes/No
+
+     - [ ] Can Tinc work, ever? :: Yes/No
+
+     - [ ] Unpatched Tinc Problems :: (list)
+
+     - [ ] Patched Tinc Problems :: (list)
+
+***** [2013-08-13 Tue] Nick Daly
+
+      Yes, Tinc has [[http://www.tinc-vpn.org/security/][problems]], but they seem to be resolvable or ignorable:
+
+      #+begin_quote
+        James Vasile:
+
+        As for those security points, we could address them and ship our own
+        Tinc that is incompatible with existing Tinc.  Going off of the
+        problems listed at http://www.tinc-vpn.org/security/ I see a
+        relatively easy fixes.
+
+        1. Randomize the IV for each packet.
+
+        2. Increase default HMAC length or just config it to be longer.
+
+        3. We could add padding in RSA.  And there are easily-implemented
+           techniques for defending against RSA timing attacks.
+
+        4. The Auth Protocol problem doesn't look worth fixing to me.  In
+           paractice that's a DOS attack unless I'm missing something.
+
+        The cost of these is dev time and a little on the performance side.
+
+        But we can ship Tinc as-is and fix those points over time.  Tinc is
+        rather good security for now.
+
+      #+end_quote
+
+***** [timestamp] (user)
+
+* FreedomBox 2.0 [0/8]
 
   Generally Useful, includes service configuration and UI polish.
 
@@ -363,6 +425,22 @@
 
     That'd be useful and convenient, but should exclude the data directory.
 
+*** TODO Start Community Heartbeat Support
+
+    Boxes should be able to ping other boxes for health information about their
+    mutual connections and other data.  Boxes could run tests on other boxes to
+    make sure they're still in one piece and send out communal alerts when a box
+    is found to be failing ("Alice has a bad network connection," "Bob's sending
+    out malware!").
+
+    Might be broken out into a separate heartbeat project.
+
+*** TODO Integrate Tinc into Plinth [0/1]
+
+**** TODO Tinc Testing
+
+     http://www.vanheusden.com/linux/tinc_mini_howto.html
+
 ** TODO FreedomBuddy [0/6]
 
 *** TODO Finish FreedomBuddy UI
@@ -388,9 +466,7 @@
 
 *** TODO Add LDAP database backend
 
-** TODO FreedomMaker [0/5]
-
-*** TODO Add "get the wheezy signing key" to FM's README
+** TODO FreedomMaker [1/6]
 
 *** TODO Add fbx to /etc/sudoers?
 
@@ -400,11 +476,22 @@
 
 *** TODO Novena Support
 
+    Must be bumped if Novena unavailable.
+
 *** TODO Get JWChat working. [0/2]
 
 **** TODO Suppport local server connections.
 
+     Can clients on the local server exchange messages?
+
 **** TODO Suppport server connections.
+
+     Can cilents on the local server exchange messages with remote clients?
+
+*** CANCELED Add "get the wheezy signing key" to FM's README
+    CLOSED: [2013-08-13 Tue 07:46]
+    - State "CANCELED"   from "TODO"       [2013-08-13 Tue 07:46] \\
+      Now that Wheezy's Stable, this is done automagically.
 
 ** TODO Key Report [0/2]
 
