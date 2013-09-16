@@ -236,7 +236,7 @@
 
     Might not be worth it, as everything's moving to .debs soon.
 
-** TODO Freedom Maker [2/13]
+** TODO Freedom Maker [2/9]
 
 *** TODO Add LDAP Backend
 
@@ -400,7 +400,7 @@
 
   Infrastructure packages should be available in Debian Testing.
 
-** TODO Plinth [0/9]
+** TODO Plinth [0/11]
 
    Integrate more services.
 
