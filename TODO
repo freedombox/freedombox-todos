@@ -33,7 +33,7 @@
 
     Plinth is a web front end for administering every aspect of a Freedom Box.
 
-    James Vasile's master branch is the current root.
+    Nick Daly's master branch is the current root.
 
     - [[https://github.com/jvasile/plinth][James Vasile's Branch]]
     - [[https://github.com/NickDaly/plinth][Nick Daly's Branch]]
@@ -43,9 +43,10 @@
     ExMachina is the shim between any frontends and system-level configuration
     tasks.
 
-    Bryan Newbold's master branch is the current root.
+    The master branch of ExMachina is currently integrated into [[*Plinth][Plinth]] since
+    Bryan Newbold's upstream is dead.
 
-    - [[http://github.com/bnewbold/exmachina][Bryan Newbold's Branch]]
+    - [[http://github.com/bnewbold/exmachina][Bryan Newbold's Branch]] (defunct)
     - [[https://gitorious.org/exmachina][Gitorious Project]]
 
 *** FreedomBuddy
@@ -57,7 +58,7 @@
 
     - [[https://github.com/NickDaly/freedombuddy][Nick Daly's Branch]]
     - [[https://github.com/tomgalloway/freedombuddy][Tom Galloway's Branch]]
-    - [[https://gitorious.org/freedombuddy][Gitoriousl Project]]
+    - [[https://gitorious.org/freedombuddy][Gitorious Project]]
 
 *** FreedomBox Privoxy
 
@@ -74,9 +75,10 @@
 
     With SQLite uses an SQLite database as a dictionary in Python.
 
-    James Vasile's master branch is the current root.
+    Nick Daly's master branch is the current root.
 
     - [[https://github.com/jvasile/withsqlite][James Vasile's Branch]]
+    - [[https://github.com/NickDaly/withsqlite][Nick Daly's Branch]]
 
 *** Publish
 
@@ -84,7 +86,7 @@
 
     Nick Daly's master branch is the current root.
 
-    - https://gitorious.org/project-publish
+    - [[https://gitorious.org/project-publish][Nick Daly's Branch]]
 
 *** Key Report
 
@@ -92,8 +94,7 @@
 
     Nick Daly's master branch is the current root.
 
-    - https://gitorious.org/key-report/
-    - https://github.com/NickDaly/key-report/
+    - [[https://gitorious.org/key-report/][Nick Daly's Branch (gitorious)]], [[https://github.com/NickDaly/key-report/][(github)]]
 
 * FreedomBox 1.0 [1/9]
 
@@ -191,7 +192,7 @@
 
     Might not be worth it, as everything's moving to .debs soon.
 
-** TODO Plinth [2/7]
+** TODO Plinth [3/6]
 
 *** TODO Provide CherryPy through Apache
 
@@ -203,13 +204,15 @@
 
     They shouldn't change the server's name.
 
-*** TODO Include missing dependencies. [3/4]
+*** DONE Include missing dependencies. [4/4]
+    CLOSED: [2013-09-08 Sun 14:59]
+    - State "DONE"       from "TODO"       [2013-09-08 Sun 14:59]
     - State "DONE"       from "TODO"       [2013-07-28 Sun 20:14]
 
     - [X] psmisc
     - [X] python2.7
     - [X] libpython2.7
-    - [ ] sudo
+    - [X] sudo
 
 *** DONE Move /build to /vendor
     CLOSED: [2013-07-28 Sun 20:15]
