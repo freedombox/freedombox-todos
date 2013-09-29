@@ -96,7 +96,7 @@
 
     - [[https://gitorious.org/key-report/][Nick Daly's Branch (gitorious)]], [[https://github.com/NickDaly/key-report/][(github)]]
 
-* FreedomBox 1.0 [1/9]
+* FreedomBox 1.0 [2/8]
 
   A dedicated hacker's release.  All the pieces are there, but not necessarily
   integrated as well as they should be.
@@ -192,17 +192,29 @@
 
     Might not be worth it, as everything's moving to .debs soon.
 
-** TODO Plinth [3/6]
+** DONE Plinth [6/6]
+   CLOSED: [2013-09-29 Sun 18:15]
+   - State "DONE"       from "TODO"       [2013-09-29 Sun 18:15]
 
-*** TODO Provide CherryPy through Apache
+*** DONE Provide CherryPy through Apache
+    CLOSED: [2013-09-29 Sun 18:14]
+    - State "DONE"       from "TODO"       [2013-09-29 Sun 18:14]
 
-*** TODO Don't POST password... EVER.
+*** DONE Don't POST password... EVER.
+    CLOSED: [2013-09-29 Sun 18:14]
+    - State "DONE"       from "TODO"       [2013-09-29 Sun 18:14]
 
     We currently post on login fails.
 
-*** TODO CherryPy HTTPRedirects Shouldn't Go To 127.0.0.1
+    Now irrelevant, as Plinth is behind HTTPS.
+
+*** DONE CherryPy HTTPRedirects Shouldn't Go To 127.0.0.1
+    CLOSED: [2013-09-29 Sun 18:15]
+    - State "DONE"       from "TODO"       [2013-09-29 Sun 18:15]
 
     They shouldn't change the server's name.
+
+    Fixed by putting CherryPy behind Apache.
 
 *** DONE Include missing dependencies. [4/4]
     CLOSED: [2013-09-08 Sun 14:59]
