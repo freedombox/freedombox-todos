@@ -96,7 +96,7 @@
 
     - [[https://gitorious.org/key-report/][Nick Daly's Branch (gitorious)]], [[https://github.com/NickDaly/key-report/][(github)]]
 
-* FreedomBox 1.0 [2/8]
+* FreedomBox 1.0 [3/8]
 
   A dedicated hacker's release.  All the pieces are there, but not necessarily
   integrated as well as they should be.
@@ -328,9 +328,11 @@
     Not every device supports external storage anyway...  Just use a bigger
     card.
 
-** TODO ExMachina [0/1]
+** CANCELED ExMachina [1/1]
+   CLOSED: [2013-10-06 Sun 21:36]
 
-*** TODO Security Audit / Hammer Away at ExMachina
+*** CANCELED Security Audit / Hammer Away at ExMachina
+    CLOSED: [2013-10-06 Sun 21:36]
 
 ** TODO Documentation [0/1]
 
@@ -406,17 +408,19 @@
 
 ***** [timestamp] (user)
 
-* FreedomBox 2.0 [0/8]
+* FreedomBox 2.0 [1/7]
 
   Generally Useful, includes service configuration and UI polish.
 
   Infrastructure packages should be available in Debian Testing.
 
-** TODO Plinth [0/11]
+** TODO Plinth [1/11]
 
    Integrate more services.
 
-*** TODO Produce Plinth Debian Package
+*** DONE Produce Plinth Debian Package
+    CLOSED: [2013-10-06 Sun 21:34]
+    - State "DONE"       from "TODO"       [2013-10-06 Sun 21:34]
 
     See freedombox-privoxy's "make_deb.sh".
 
@@ -481,13 +485,15 @@
 
 *** TODO Add LDAP database backend
 
-** TODO FreedomMaker [1/6]
+** TODO FreedomMaker [2/6]
 
 *** TODO Add fbx to /etc/sudoers?
 
 *** TODO Replace Spinifex Firmware with Libertas-fw package.
 
-*** TODO Debian-Package Freedom Maker
+*** DONE Debian-Package Freedom Maker
+    CLOSED: [2013-10-06 Sun 21:35]
+    - State "DONE"       from "TODO"       [2013-10-06 Sun 21:35]
 
 *** TODO Novena Support
 
@@ -514,9 +520,11 @@
 
 *** TODO Package Key Report
 
-** TODO ExMachina [0/1]
+** CANCELED ExMachina [1/1]
+   CLOSED: [2013-10-06 Sun 21:35]
 
-*** TODO Package ExMachina
+*** CANCELED Package ExMachina
+    CLOSED: [2013-10-06 Sun 21:35]
 
 ** TODO Infrastructure [0/5]
 
