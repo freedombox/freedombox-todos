@@ -38,17 +38,6 @@
     - [[https://github.com/jvasile/plinth][James Vasile's Branch]]
     - [[https://github.com/NickDaly/plinth][Nick Daly's Branch]]
 
-*** ExMachina
-
-    ExMachina is the shim between any frontends and system-level configuration
-    tasks.
-
-    The master branch of ExMachina is currently integrated into [[*Plinth][Plinth]] since
-    Bryan Newbold's upstream is dead.
-
-    - [[http://github.com/bnewbold/exmachina][Bryan Newbold's Branch]] (defunct)
-    - [[https://gitorious.org/exmachina][Gitorious Project]]
-
 *** FreedomBuddy
 
     FreedomBuddy manages service discovery between FreedomBoxes, coordinating
@@ -106,16 +95,6 @@
 *** TODO Start Gluing Pieces Together
 
     At least some projects should work with Plinth and use the LDAP backend.
-
-** DONE Key Report [1/1]
-   CLOSED: [2013-08-01 Thu 22:13]
-   - State "DONE"       from "TODO"       [2013-08-01 Thu 22:13]
-
-*** DONE Create Key/Cert Expiry Reporting Tools
-    CLOSED: [2013-08-01 Thu 22:13]
-    - State "DONE"       from "TODO"       [2013-08-01 Thu 22:13]
-
-    [[file:key-report/key-report.py]]
 
 ** TODO FreedomBuddy [2/5]
 
@@ -180,62 +159,6 @@
 *** DONE Finish FreedomBuddy UI
     CLOSED: [2013-07-28 Sun 14:12]
     - State "DONE"       from "TODO"       [2013-07-28 Sun 14:12]
-
-*** CANCELED Move ./build dependencies to ../
-    CLOSED: [2013-07-28 Sun 14:12]
-    - State "CANCELED"   from "TODO"       [2013-07-28 Sun 14:12] \\
-      Fixing dependency duplication for FBuddy specifically is worth less
-      than moving to .debs, and will break FBuddy for non-FBX installs,
-      anyway.
-
-    This'll help unify the dependencies at the file level.
-
-    Might not be worth it, as everything's moving to .debs soon.
-
-** DONE Plinth [6/6]
-   CLOSED: [2013-09-29 Sun 18:15]
-   - State "DONE"       from "TODO"       [2013-09-29 Sun 18:15]
-
-*** DONE Provide CherryPy through Apache
-    CLOSED: [2013-09-29 Sun 18:14]
-    - State "DONE"       from "TODO"       [2013-09-29 Sun 18:14]
-
-*** DONE Don't POST password... EVER.
-    CLOSED: [2013-09-29 Sun 18:14]
-    - State "DONE"       from "TODO"       [2013-09-29 Sun 18:14]
-
-    We currently post on login fails.
-
-    Now irrelevant, as Plinth is behind HTTPS.
-
-*** DONE CherryPy HTTPRedirects Shouldn't Go To 127.0.0.1
-    CLOSED: [2013-09-29 Sun 18:15]
-    - State "DONE"       from "TODO"       [2013-09-29 Sun 18:15]
-
-    They shouldn't change the server's name.
-
-    Fixed by putting CherryPy behind Apache.
-
-*** DONE Include missing dependencies. [4/4]
-    CLOSED: [2013-09-08 Sun 14:59]
-    - State "DONE"       from "TODO"       [2013-09-08 Sun 14:59]
-    - State "DONE"       from "TODO"       [2013-07-28 Sun 20:14]
-
-    - [X] psmisc
-    - [X] python2.7
-    - [X] libpython2.7
-    - [X] sudo
-
-*** DONE Move /build to /vendor
-    CLOSED: [2013-07-28 Sun 20:15]
-    - State "DONE"       from "TODO"       [2013-07-28 Sun 20:12]
-
-    Do it for consistency with freedombox-privoxy and freedom-maker.
-
-    Update references in:
-
-    - plinth/start.sh
-    - plinth/Makefile
 
 *** CANCELED Move ./build dependencies to ../
     CLOSED: [2013-07-28 Sun 14:12]
@@ -328,12 +251,6 @@
     Not every device supports external storage anyway...  Just use a bigger
     card.
 
-** CANCELED ExMachina [1/1]
-   CLOSED: [2013-10-06 Sun 21:36]
-
-*** CANCELED Security Audit / Hammer Away at ExMachina
-    CLOSED: [2013-10-06 Sun 21:36]
-
 ** TODO Documentation [0/1]
 
 *** TODO Write Developer Documentation
@@ -407,6 +324,78 @@
       #+end_quote
 
 ***** [timestamp] (user)
+
+** DONE Plinth [6/6]
+   CLOSED: [2013-09-29 Sun 18:15]
+   - State "DONE"       from "TODO"       [2013-09-29 Sun 18:15]
+
+*** DONE Provide CherryPy through Apache
+    CLOSED: [2013-09-29 Sun 18:14]
+    - State "DONE"       from "TODO"       [2013-09-29 Sun 18:14]
+
+*** DONE Don't POST password... EVER.
+    CLOSED: [2013-09-29 Sun 18:14]
+    - State "DONE"       from "TODO"       [2013-09-29 Sun 18:14]
+
+    We currently post on login fails.
+
+    Now irrelevant, as Plinth is behind HTTPS.
+
+*** DONE CherryPy HTTPRedirects Shouldn't Go To 127.0.0.1
+    CLOSED: [2013-09-29 Sun 18:15]
+    - State "DONE"       from "TODO"       [2013-09-29 Sun 18:15]
+
+    They shouldn't change the server's name.
+
+    Fixed by putting CherryPy behind Apache.
+
+*** DONE Include missing dependencies. [4/4]
+    CLOSED: [2013-09-08 Sun 14:59]
+    - State "DONE"       from "TODO"       [2013-09-08 Sun 14:59]
+    - State "DONE"       from "TODO"       [2013-07-28 Sun 20:14]
+
+    - [X] psmisc
+    - [X] python2.7
+    - [X] libpython2.7
+    - [X] sudo
+
+*** DONE Move /build to /vendor
+    CLOSED: [2013-07-28 Sun 20:15]
+    - State "DONE"       from "TODO"       [2013-07-28 Sun 20:12]
+
+    Do it for consistency with freedombox-privoxy and freedom-maker.
+
+    Update references in:
+
+    - plinth/start.sh
+    - plinth/Makefile
+
+*** CANCELED Move ./build dependencies to ../
+    CLOSED: [2013-07-28 Sun 14:12]
+    - State "CANCELED"   from "TODO"       [2013-07-28 Sun 14:12] \\
+      Fixing dependency duplication for FBuddy specifically is worth less
+      than moving to .debs, and will break FBuddy for non-FBX installs,
+      anyway.
+
+    This'll help unify the dependencies at the file level.
+
+    Might not be worth it, as everything's moving to .debs soon.
+
+** DONE Key Report [1/1]
+   CLOSED: [2013-08-01 Thu 22:13]
+   - State "DONE"       from "TODO"       [2013-08-01 Thu 22:13]
+
+*** DONE Create Key/Cert Expiry Reporting Tools
+    CLOSED: [2013-08-01 Thu 22:13]
+    - State "DONE"       from "TODO"       [2013-08-01 Thu 22:13]
+
+    [[file:key-report/key-report.py]]
+
+** CANCELED ExMachina [1/1]
+   CLOSED: [2013-10-06 Sun 21:36]
+
+*** CANCELED Security Audit / Hammer Away at ExMachina
+    CLOSED: [2013-10-06 Sun 21:36]
 
 * FreedomBox 2.0 [1/7]
 
@@ -520,12 +509,6 @@
 
 *** TODO Package Key Report
 
-** CANCELED ExMachina [1/1]
-   CLOSED: [2013-10-06 Sun 21:35]
-
-*** CANCELED Package ExMachina
-    CLOSED: [2013-10-06 Sun 21:35]
-
 ** TODO Infrastructure [0/5]
 
 *** TODO Use FreedomBuddy and/or Tinc to connect all services.
@@ -548,11 +531,17 @@
 
 *** TODO Update FBF.org Style for Butterfly Logo
 
+** CANCELED ExMachina [1/1]
+   CLOSED: [2013-10-06 Sun 21:35]
+
+*** CANCELED Package ExMachina
+    CLOSED: [2013-10-06 Sun 21:35]
+
 * FreedomBox 3.0 [0/0]
 
   A generally usable consumer device.
 
-  Viable upgrade paths should exist between 2.0 and 3.0.
+  Viable upgrade paths must exist between 2.0 and 3.0.
 
 * Unscheduled [0/0]
 
