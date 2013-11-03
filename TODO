@@ -29,6 +29,16 @@
     - [[http://anonscm.debian.org/gitweb/?p%3Dfreedombox/freedom-maker.git][Bdale Garbee's Branch]]
     - [[https://github.com/NickDaly/freedom-maker/][Nick Daly's Branch]]
 
+*** FreedomBog setup
+
+    The configuration of a FreedomBox is collected in a debian package
+    that can be installed on any Debian system and configured by
+    running /usr/lib/freedombox/setup.
+
+    Petter Reinholdtsen's master branch is the current root.
+
+    - [[https://github.com/petterreinholdtsen/freedombox-setup][Petter Reinholdtsen's Branch]]
+
 *** Plinth
 
     Plinth is a web front end for administering every aspect of a Freedom Box.
@@ -37,6 +47,10 @@
 
     - [[https://github.com/jvasile/plinth][James Vasile's Branch]]
     - [[https://github.com/NickDaly/plinth][Nick Daly's Branch]]
+
+    The Debian packaging is maintained on Alioth.
+
+    - [[http://anonscm.debian.org/gitweb/?p=freedombox/plinth.git;a=summary][Alioth git repository]]
 
 *** ExMachina
 
