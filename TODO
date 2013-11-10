@@ -185,7 +185,7 @@
 
     Might not be worth it, as everything's moving to .debs soon.
 
-** TODO Freedom Maker [2/9]
+** TODO Freedom Maker [4/9]
 
 *** TODO Add LDAP Backend
 
@@ -197,7 +197,16 @@
 
     This will be the user's crash course to their freedombox.
 
-*** TODO Make Plinth Launch on Startup
+*** TODO Add tcp torrent tracker for built images
+
+    #+begin_ascii
+      The tracker URL in the torrent file uses UDP, which is not universally
+      supported in Debian (bug #638194).
+    #+end_ascii
+
+*** DONE Make Plinth Launch on Startup
+    CLOSED: [2013-11-10 Sun 14:36]
+    - State "DONE"       from "TODO"       [2013-11-10 Sun 14:36]
 
     - Make plinth in FM during image build process, or,
 
@@ -209,52 +218,9 @@
       Plinth's own start.sh should handle its own local installation, nothing
       else.  The big script should probably assume ~/exmachina is available.
 
-*** TODO Add tcp tracker
-
-    #+begin_ascii
-      The tracker URL in the torrent file uses UDP, which is not universally
-      supported in Debian (bug #638194).
-    #+end_ascii
-
-*** TODO Add RaspberryPi target
-
-**** Notes
-
-***** [2013-06-30 Sun]
-
-      - [[https://github.com/asb/spindle][Spindle]] :: spindle is a set of scripts to aid building and working on a
-           distribution image.
-
-           I'm not crazy about this, it downloads blobs like:
-
-           http://asbradbury.org/tmp/raspi/simple-root-filesystem-armv6l.tar.bz2
-           http://asbradbury.org/tmp/raspi/system-image-armv6l.tar.bz2
-           http://asbradbury.org/tmp/raspi/dropbearmulti-armv6l
-
-      - [[http://www.aclevername.com/articles/linux-xilinx-tutorial/minimalist-initramfs.html][Minimalist Initramfs]] :: Instructions on building an initramfs.  Neato.
-
-      - [[http://www.raspbian.org/RaspbianDocumentation][Raspbian Documentation]] :: Good link list.
-
-      - [[https://github.com/Hexxeh/rpi-firmware][RaspberryPi Firmware]] :: ~60 MB Compiled Kernel + Firmware Blob.
-
-           Confusing: both GPL and not-GPL.  The copy of the GPL comes with an
-           interesting Linus-disclaimer.  No source available?
-
-***** [2013-07-20 Sat]
-
-      Lost my RPi.  I have the SD card and the power cord, but not the Pi itself.
-      This makes testing difficult.  Where the fuck did I put it?  Guess I buy a
-      new one?  Will do that tomorrow.
-
-**** Communications
-
-***** [2013-06-30 Sun]
-
-****** DONE Write Alex Bradbury <asb@asbradbury.org>
-       CLOSED: [2013-06-30 Sun 14:54]
-
-****** DONE Write Mike Thompson <mpthompson@gmail.com>
-       CLOSED: [2013-06-30 Sun 14:58]
+*** DONE Add RaspberryPi target
+    CLOSED: [2013-11-10 Sun 14:28]
+    - State "DONE"       from "TODO"       [2013-11-10 Sun 14:28]
 
 *** DONE Merge Freedom Maker Shiny into Master
 
