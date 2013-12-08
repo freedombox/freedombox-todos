@@ -4,131 +4,130 @@
 
 * Introduction
 
-  This is an integrated TODO list for the FreedomBox project, compiling todos
-  from each of the included projects.  Right now, we're trying to finish 1.0.
-  The 2.0 and 3.0 TODOs are not yet firm.
+This is an integrated TODO list for the FreedomBox project, compiling todos from
+each of the included projects.  Right now, we're trying to finish 1.0.  The 2.0
+and 3.0 TODOs are not yet firm.
 
-  This file lives in a few repositories:
+This file lives in a few repositories:
 
-  - https://github.com/NickDaly/freedombox-todos
-  - https://gitorious.org/freedombox-todos
+- https://github.com/NickDaly/freedombox-todos
+- https://gitorious.org/freedombox-todos
 
 ** Projects
 
-   This section lists each of the projects tracked in this TODO list along with
-   any known repositories for those projects.
+This section lists each of the projects tracked in this TODO list along with any
+known repositories for those projects.
 
 *** Freedom Maker
 
-    Freedom Maker (FM) is the central hub of the FreedomBox project, it builds
-    and installs the file-system image that turns any computer into a
-    FreedomBox.
+Freedom Maker (FM) is the central hub of the FreedomBox project, it builds and
+installs the file-system image that turns any computer into a FreedomBox.
 
-    Bdale Garbee's master branch is the current root.
+Bdale Garbee's master branch is the current root.
 
-    - [[http://anonscm.debian.org/gitweb/?p%3Dfreedombox/freedom-maker.git][Bdale Garbee's Branch]]
-    - [[https://github.com/NickDaly/freedom-maker/][Nick Daly's Branch]]
+- [[http://anonscm.debian.org/gitweb/?p%3Dfreedombox/freedom-maker.git][Bdale Garbee's Branch]]
+- [[https://github.com/NickDaly/freedom-maker/][Nick Daly's Branch]]
 
 *** FreedomBox Setup
 
-    The configuration of a FreedomBox is collected in a debian package that can
-    be installed on any Debian system and configured by running
-    =/usr/lib/freedombox/setup=.
+The configuration of a FreedomBox is collected in a debian package that can be
+installed on any Debian system and configured by running
+=/usr/lib/freedombox/setup=.
 
-    Petter Reinholdtsen's master branch is the current root.
+Petter Reinholdtsen's master branch is the current root.
 
-    - [[https://github.com/petterreinholdtsen/freedombox-setup][Petter Reinholdtsen's Branch]]
+- [[https://github.com/petterreinholdtsen/freedombox-setup][Petter Reinholdtsen's Branch]]
 
 *** Plinth
 
-    Plinth is a web front end for administering every aspect of a Freedom Box.
+Plinth is a web front end for administering every aspect of a Freedom Box.
 
-    Nick Daly's master branch is the current root.
+Nick Daly's master branch is the current root.
 
-    - [[https://github.com/jvasile/plinth][James Vasile's Branch]]
-    - [[https://github.com/NickDaly/plinth][Nick Daly's Branch]]
+- [[https://github.com/jvasile/plinth][James Vasile's Branch]]
+- [[https://github.com/NickDaly/plinth][Nick Daly's Branch]]
 
-    The Debian packaging is maintained on Alioth.
+The Debian packaging is maintained on Alioth.
 
-    - [[http://anonscm.debian.org/gitweb/?p=freedombox/plinth.git;a=summary][Alioth git repository]]
+- [[http://anonscm.debian.org/gitweb/?p=freedombox/plinth.git;a=summary][Alioth git repository]]
 
 *** FreedomBuddy
 
-    FreedomBuddy manages service discovery between FreedomBoxes, coordinating
-    connections between friendly servers for any service.
+FreedomBuddy manages service discovery between FreedomBoxes, coordinating
+connections between friendly servers for any service.
 
-    Nick Daly's master branch is the current root.
+Nick Daly's master branch is the current root.
 
-    - [[https://github.com/NickDaly/freedombuddy][Nick Daly's Branch]]
-    - [[https://github.com/tomgalloway/freedombuddy][Tom Galloway's Branch]]
-    - [[https://gitorious.org/freedombuddy][Gitorious Project]]
+- [[https://github.com/NickDaly/freedombuddy][Nick Daly's Branch]]
+- [[https://github.com/tomgalloway/freedombuddy][Tom Galloway's Branch]]
+- [[https://gitorious.org/freedombuddy][Gitorious Project]]
 
 *** FreedomBox Privoxy
 
-    FreedomBox Privoxy filters out privacy threats and advertising for users
-    while they browse the Internet.
+FreedomBox Privoxy filters out privacy threats and advertising for users while
+they browse the Internet.
 
-    James Vasile's master branch is the current root.
+James Vasile's master branch is the current root.
 
-    - [[https://github.com/jvasile/freedombox-privoxy][James Vasile's Branch]]
-    - [[https://github.com/NickDaly/freedombox-privoxy][Nick Daly's Branch]]
-    - [[https://www.gitorious.org/freedombox-privoxy][Gitorious Project]]
+- [[https://github.com/jvasile/freedombox-privoxy][James Vasile's Branch]]
+- [[https://github.com/NickDaly/freedombox-privoxy][Nick Daly's Branch]]
+- [[https://www.gitorious.org/freedombox-privoxy][Gitorious Project]]
 
 *** With SQLite
 
-    With SQLite uses an SQLite database as a dictionary in Python.
+With SQLite uses an SQLite database as a dictionary in Python.
 
-    Nick Daly's master branch is the current root.
+Nick Daly's master branch is the current root.
 
-    - [[https://github.com/jvasile/withsqlite][James Vasile's Branch]]
-    - [[https://github.com/NickDaly/withsqlite][Nick Daly's Branch]]
+- [[https://github.com/jvasile/withsqlite][James Vasile's Branch]]
+- [[https://github.com/NickDaly/withsqlite][Nick Daly's Branch]]
 
 *** Publish
 
-    Publish publishes projects in the simplest ways possible.
+Publish publishes projects in the simplest ways possible.
 
-    Nick Daly's master branch is the current root.
+Nick Daly's master branch is the current root.
 
-    - [[https://gitorious.org/project-publish][Nick Daly's Branch]]
+- [[https://gitorious.org/project-publish][Nick Daly's Branch]]
 
 *** Key Report
 
-    Mentions keys that will expire soon.
+Mentions keys that will expire soon.
 
-    Nick Daly's master branch is the current root.
+Nick Daly's master branch is the current root.
 
-    - [[https://gitorious.org/key-report/][Nick Daly's Branch (gitorious)]], [[https://github.com/NickDaly/key-report/][(github)]]
+- [[https://gitorious.org/key-report/][Nick Daly's Branch (gitorious)]], [[https://github.com/NickDaly/key-report/][(github)]]
 
 
 * FreedomBox 1.0 [3/9]
 
-  A dedicated hacker's release.  All the pieces are there, but not necessarily
-  integrated as well as they should be.
+A dedicated hacker's release.  All the pieces are there, but not necessarily
+integrated as well as they should be.
 
 ** TODO Infrastructure [0/5]
 
 *** TODO Start Gluing Pieces Together
 
-    At least some projects should work with Plinth and use the LDAP backend.
+At least some projects should work with Plinth and use the LDAP backend.
 
 *** TODO Use NoLogin Shell for User Accounts
 
-    For this to be successful, users must be able to manage the system without
-    loggging into the system.  If we must log into the system to manage it while
-    building it, it's not release-ready.
+For this to be successful, users must be able to manage the system without
+loggging into the system.  If we must log into the system to manage it while
+building it, it's not release-ready.
 
 *** TODO Make OwnCloud Setup Page Smarter and Asynchronous
 
-    OwnCloud setup (and any step that could potentially take a long time) should
-    be better handled within Plinth.  Right now, we don't handle it at all and
-    just fork a process, leaving the user to wonder why the service isn't
-    available, even though the system has obviously refreshed the page.
+OwnCloud setup (and any step that could potentially take a long time) should be
+better handled within Plinth.  Right now, we don't handle it at all and just
+fork a process, leaving the user to wonder why the service isn't available, even
+though the system has obviously refreshed the page.
 
-    We don't, but should, land the user on a page that polls the state of the
-    install every few seconds with a several-minute countdown timer.  When the
-    timer reaches zero, the page redirects the user to an error page.  However,
-    if the setup process finishes at any time before then, the user is
-    redirected to the OwnCloud install.
+We don't, but should, land the user on a page that polls the state of the
+install every few seconds with a several-minute countdown timer.  When the timer
+reaches zero, the page redirects the user to an error page.  However, if the
+setup process finishes at any time before then, the user is redirected to the
+OwnCloud install.
 
 ** TODO FreedomBuddy [2/5]
 
@@ -136,45 +135,45 @@
 
 **** TODO Finish Introduction System
 
-     1. Sender exports public key to file.
-     2. Sender exports signed location message to file.
-     3. Sender archives both files.
-     4. Sender and receiver exchange the archive.
-     5. Receiver unpacks the archive.
-     6. Receiver imports public key.
-     7. Receiver verifies and imports signed location message.
+1. Sender exports public key to file.
+2. Sender exports signed location message to file.
+3. Sender archives both files.
+4. Sender and receiver exchange the archive.
+5. Receiver unpacks the archive.
+6. Receiver imports public key.
+7. Receiver verifies and imports signed location message.
 
 **** TODO Add Default Services [0/3]
 
-     Make a default set of services available to make it easy for folks to start
-     hosting services for someone else.  It could be a sort of "add a new user"
-     wizard that sets the default services and creates the introduction message
-     archive.
+Make a default set of services available to make it easy for folks to start
+hosting services for someone else.  It could be a sort of "add a new user"
+wizard that sets the default services and creates the introduction message
+archive.
 
-     We need to create a "default" key that is loaded into the shelf only when
-     the shelf doesn't already contain a default service set.  That service set
-     should contain the current default services:
+We need to create a "default" key that is loaded into the shelf only when the
+shelf doesn't already contain a default service set.  That service set should
+contain the current default services:
 
-     - http listener
-     - http sender
-     - http monitor
-     - cli monitor
+- http listener
+- http sender
+- http monitor
+- cli monitor
 
 ***** TODO Load Default Services
 
-      If default services aren't found in the saved data, they're read from the
-      config file.
+If default services aren't found in the saved data, they're read from the config
+file.
 
 ***** TODO Reject "Default" Key Updates
 
-      The "Default" key is a special, protected, key (maybe 0, maybe "default")
-      for which all external service updates are rejected, in the same way the
-      "-update-time" service suffix is protected.
+The "Default" key is a special, protected, key (maybe 0, maybe "default") for
+which all external service updates are rejected, in the same way the
+"-update-time" service suffix is protected.
 
 ***** TODO Copy Default Services when Adding a New Key
 
-      The services you want to host for other people are copied to their service
-      list whenever a new key is added.
+The services you want to host for other people are copied to their service list
+whenever a new key is added.
 
 *** TODO Write FreedomBuddy Threat Model
     :PROPERTIES:
@@ -182,13 +181,13 @@
     :ID:       fc7e9d5e-7db7-4b7c-9efa-f5ca23d0eff5
     :END:
 
-    - http://wiki.openitp.org/peerreviewboard:start
+- http://wiki.openitp.org/peerreviewboard:start
 
-    - [[file:data/fc/7e9d5e-7db7-4b7c-9efa-f5ca23d0eff5/fbuddy-threat-model.org][FreedomBuddy Threat Model]]
+- [[file:data/fc/7e9d5e-7db7-4b7c-9efa-f5ca23d0eff5/fbuddy-threat-model.org][FreedomBuddy Threat Model]]
 
 *** TODO Add Contracts to functions.
 
-    Use PyContract to verify functional contracts.
+Use PyContract to verify functional contracts.
 
 *** DONE Finish FreedomBuddy UI
     CLOSED: [2013-07-28 Sun 14:12]
@@ -201,9 +200,9 @@
       than moving to .debs, and will break FBuddy for non-FBX installs,
       anyway.
 
-    This'll help unify the dependencies at the file level.
+This'll help unify the dependencies at the file level.
 
-    Might not be worth it, as everything's moving to .debs soon.
+Might not be worth it, as everything's moving to .debs soon.
 
 ** TODO Freedom Maker [4/9]
 
@@ -215,28 +214,28 @@
 
 *** TODO Write an intro file so users can =less hello=
 
-    This will be the user's crash course to their freedombox.
+This will be the user's crash course to their freedombox.
 
 *** TODO Add tcp torrent tracker for built images
 
-    #+begin_ascii
-      The tracker URL in the torrent file uses UDP, which is not universally
-      supported in Debian (bug #638194).
-    #+end_ascii
+#+begin_ascii
+  The tracker URL in the torrent file uses UDP, which is not universally
+  supported in Debian (bug #638194).
+#+end_ascii
 
 *** DONE Make Plinth Launch on Startup
     CLOSED: [2013-11-10 Sun 14:36]
     - State "DONE"       from "TODO"       [2013-11-10 Sun 14:36]
 
-    - Make plinth in FM during image build process, or,
+- Make plinth in FM during image build process, or,
 
-    - Build some giant startup script to run Plinth that handles everything:
+- Build some giant startup script to run Plinth that handles everything:
 
-      - make-ing plinth
-      - other requirements
+  - make-ing plinth
+  - other requirements
 
-      Plinth's own start.sh should handle its own local installation, nothing
-      else.  The big script should probably assume ~/exmachina is available.
+Plinth's own start.sh should handle its own local installation, nothing else.
+The big script should probably assume ~/exmachina is available.
 
 *** DONE Add RaspberryPi target
     CLOSED: [2013-11-10 Sun 14:28]
@@ -248,20 +247,19 @@
     CLOSED: [2013-07-27 Sat 20:53]
     - State "CANCELED"   from "TODO"       [2013-07-27 Sat 20:53]
 
-    Not every device supports external storage anyway...  Just use a bigger
-    card.
+Not every device supports external storage anyway...  Just use a bigger card.
 
 *** DONE Unify VirtualBox and Image Build Systems
     CLOSED: [2013-12-08 Sun 09:33]
     - State "DONE"       from "TODO"       [2013-12-08 Sun 09:33]
 
-    The VBox image and filesystem image have completely separate dependency
-    lists.  That is bad.  Both images should pull in the same list of
-    dependencies to make sure they're functionally equivalent.
+The VBox image and filesystem image have completely separate dependency lists.
+That is bad.  Both images should pull in the same list of dependencies to make
+sure they're functionally equivalent.
 
-    We'll need to parse the single dependency list for each image separately and
-    pass those to the dependency-getter (apt-get in one case, --package in the
-    other).  Unifying other pieces is also nice, but this is the most important.
+We'll need to parse the single dependency list for each image separately and
+pass those to the dependency-getter (apt-get in one case, --package in the
+other).  Unifying other pieces is also nice, but this is the most important.
 
 *** DONE Improve USB Formatting [2/2]
     CLOSED: [2013-12-08 Sun 09:34]
@@ -277,82 +275,82 @@
      - State "CANCELED"   from "TODO"       [2013-12-08 Sun 09:33] \\
        Unnecessary after move to vmdebootstrap.
 
-     Parted's really useful.  This means we can forego using a USB device and
-     not need to mess with /etc/fstab at all.
+Parted's really useful.  This means we can forego using a USB device and not
+need to mess with /etc/fstab at all.
 
-     [[file:freedom-maker/Makefile::image:%20$(STAMP)-rootfs-$(ARCHITECTURE)][file:freedom-maker/Makefile::image: $(STAMP)-rootfs-$(ARCHITECTURE)]]
+[[file:freedom-maker/Makefile::image: $(STAMP)-rootfs-$(ARCHITECTURE)]]
 
 ** TODO Documentation [0/1]
 
 *** TODO Write Developer Documentation
 
-    Take the current state of the FBX and write up how to use all the parts
-    together.
+Take the current state of the FBX and write up how to use all the parts
+together.
 
 ** TODO VPN Support [0/2]
 
-   When available, FreedomBoxes will construct VPNs to communicate between one
-   another.  It seems unlikely that all these VPNs will form a single, large,
-   network but, rather, that each FreedomBox will construct its own VPN network
-   by which it can reach all of its trusted peers.  This should help to prevent
-   non-mutually trusted peers from seeing one another and leaking the
-   social/network graph.
+When available, FreedomBoxes will construct VPNs to communicate between one
+another.  It seems unlikely that all these VPNs will form a single, large,
+network but, rather, that each FreedomBox will construct its own VPN network by
+which it can reach all of its trusted peers.  This should help to prevent
+non-mutually trusted peers from seeing one another and leaking the
+social/network graph.
 
-   When VPNs aren't available, FreedomBuddy can still be used to create direct
-   connections over arbitrary networks.  However, this is less desirable as it
-   doesn't abstract away the network protocol and reqiures each application to
-   be able to use the protocol.  For example, if your browser doesn't understand
-   how to handle the webserver at gnunet://00000000, you're out of luck.  There
-   is still the option of just communicating directly over FreedomBuddy, but
-   that's a really roundabout way of doing things.
+When VPNs aren't available, FreedomBuddy can still be used to create direct
+connections over arbitrary networks.  However, this is less desirable as it
+doesn't abstract away the network protocol and reqiures each application to be
+able to use the protocol.  For example, if your browser doesn't understand how
+to handle the webserver at gnunet://00000000, you're out of luck.  There is
+still the option of just communicating directly over FreedomBuddy, but that's a
+really roundabout way of doing things.
 
-   We should include a VPN system.  OpenSwan, Tinc, and librevpn appear to be
-   options.
+We should include a VPN system.  OpenSwan, Tinc, and librevpn appear to be
+options.
 
 *** TODO Include OpenSwan
 
-    James recommended OpenSwan over the similar StrongSwan.
+James recommended OpenSwan over the similar StrongSwan.
 
 *** TODO Include Tinc [0/1]
 
 **** TODO Validate Tinc's Suitability [0/4]
 
-     - [ ] Can Tinc work, now? :: Yes/No
+- [ ] Can Tinc work, now? :: Yes/No
 
-     - [ ] Can Tinc work, ever? :: Yes/No
+- [ ] Can Tinc work, ever? :: Yes/No
 
-     - [ ] Unpatched Tinc Problems :: (list)
+- [ ] Unpatched Tinc Problems :: (list)
 
-     - [ ] Patched Tinc Problems :: (list)
+- [ ] Patched Tinc Problems :: (list)
 
 ***** [2013-08-13 Tue] Nick Daly
 
-      Yes, Tinc has [[http://www.tinc-vpn.org/security/][problems]], but they seem to be resolvable or ignorable:
+Yes, Tinc has [[http://www.tinc-vpn.org/security/][problems]], but they seem to be resolvable or ignorable:
 
-      #+begin_quote
-        James Vasile:
+#+begin_quote
+  James Vasile:
 
-        As for those security points, we could address them and ship our own
-        Tinc that is incompatible with existing Tinc.  Going off of the
-        problems listed at http://www.tinc-vpn.org/security/ I see a
-        relatively easy fixes.
+  As for those security points, we could address them and ship our own
+  Tinc that is incompatible with existing Tinc.  Going off of the
+  problems listed at http://www.tinc-vpn.org/security/ I see a
+  relatively easy fixes.
 
-        1. Randomize the IV for each packet.
+  1. Randomize the IV for each packet.
 
-        2. Increase default HMAC length or just config it to be longer.
+  2. Increase default HMAC length or just config it to be longer.
 
-        3. We could add padding in RSA.  And there are easily-implemented
-           techniques for defending against RSA timing attacks.
+  3. We could add padding in RSA.  And there are easily-implemented
+     techniques for defending against RSA timing attacks.
 
-        4. The Auth Protocol problem doesn't look worth fixing to me.  In
-           paractice that's a DOS attack unless I'm missing something.
+  4. The Auth Protocol problem doesn't look worth fixing to me.  In
+     paractice that's a DOS attack unless I'm missing something.
 
-        The cost of these is dev time and a little on the performance side.
+  The cost of these is dev time and a little on the performance side.
 
-        But we can ship Tinc as-is and fix those points over time.  Tinc is
-        rather good security for now.
+  But we can ship Tinc as-is and fix those points over time.  Tinc is
+  rather good security for now.
 
-      #+end_quote
+#+end_quote
 
 ***** [timestamp] (user)
 
@@ -368,38 +366,38 @@
     CLOSED: [2013-09-29 Sun 18:14]
     - State "DONE"       from "TODO"       [2013-09-29 Sun 18:14]
 
-    We currently post on login fails.
+We currently post on login fails.
 
-    Now irrelevant, as Plinth is behind HTTPS.
+Now irrelevant, as Plinth is behind HTTPS.
 
 *** DONE CherryPy HTTPRedirects Shouldn't Go To 127.0.0.1
     CLOSED: [2013-09-29 Sun 18:15]
     - State "DONE"       from "TODO"       [2013-09-29 Sun 18:15]
 
-    They shouldn't change the server's name.
+They shouldn't change the server's name.
 
-    Fixed by putting CherryPy behind Apache.
+Fixed by putting CherryPy behind Apache.
 
 *** DONE Include missing dependencies. [4/4]
     CLOSED: [2013-09-08 Sun 14:59]
     - State "DONE"       from "TODO"       [2013-09-08 Sun 14:59]
     - State "DONE"       from "TODO"       [2013-07-28 Sun 20:14]
 
-    - [X] psmisc
-    - [X] python2.7
-    - [X] libpython2.7
-    - [X] sudo
+- [X] psmisc
+- [X] python2.7
+- [X] libpython2.7
+- [X] sudo
 
 *** DONE Move /build to /vendor
     CLOSED: [2013-07-28 Sun 20:15]
     - State "DONE"       from "TODO"       [2013-07-28 Sun 20:12]
 
-    Do it for consistency with freedombox-privoxy and freedom-maker.
+Do it for consistency with freedombox-privoxy and freedom-maker.
 
-    Update references in:
+Update references in:
 
-    - plinth/start.sh
-    - plinth/Makefile
+- plinth/start.sh
+- plinth/Makefile
 
 *** CANCELED Move ./build dependencies to ../
     CLOSED: [2013-07-28 Sun 14:12]
@@ -408,9 +406,9 @@
       than moving to .debs, and will break FBuddy for non-FBX installs,
       anyway.
 
-    This'll help unify the dependencies at the file level.
+This'll help unify the dependencies at the file level.
 
-    Might not be worth it, as everything's moving to .debs soon.
+Might not be worth it, as everything's moving to .debs soon.
 
 ** DONE Key Report [1/1]
    CLOSED: [2013-08-01 Thu 22:13]
@@ -431,19 +429,19 @@
 
 * FreedomBox 2.0 [1/7]
 
-  Generally Useful, includes service configuration and UI polish.
+Generally Useful, includes service configuration and UI polish.
 
-  Infrastructure packages should be available in Debian Testing.
+Infrastructure packages should be available in Debian Testing.
 
 ** TODO Plinth [1/11]
 
-   Integrate more services.
+Integrate more services.
 
 *** DONE Produce Plinth Debian Package
     CLOSED: [2013-10-06 Sun 21:34]
     - State "DONE"       from "TODO"       [2013-10-06 Sun 21:34]
 
-    See freedombox-privoxy's "make_deb.sh".
+See freedombox-privoxy's "make_deb.sh".
 
 *** TODO Integrate OONI
 
@@ -459,27 +457,27 @@
 
 *** TODO Add MAC Changer to Plinth
 
-    Bounce any/all active interfaces to come up with new MAC addresses.
+Bounce any/all active interfaces to come up with new MAC addresses.
 
 *** TODO Use Publish to publish Plinth's Source
 
-    That'd be useful and convenient, but should exclude the data directory.
+That'd be useful and convenient, but should exclude the data directory.
 
 *** TODO Start Community Heartbeat Support
 
-    Boxes should be able to ping other boxes for health information about their
-    mutual connections and other data.  Boxes could run tests on other boxes to
-    make sure they're still in one piece and send out communal alerts when a box
-    is found to be failing ("Alice has a bad network connection," "Bob's sending
-    out malware!").
+Boxes should be able to ping other boxes for health information about their
+mutual connections and other data.  Boxes could run tests on other boxes to make
+sure they're still in one piece and send out communal alerts when a box is found
+to be failing ("Alice has a bad network connection," "Bob's sending out
+malware!").
 
-    Might be broken out into a separate heartbeat project.
+Might be broken out into a separate heartbeat project.
 
 *** TODO Integrate Tinc into Plinth [0/1]
 
 **** TODO Tinc Testing
 
-     http://www.vanheusden.com/linux/tinc_mini_howto.html
+http://www.vanheusden.com/linux/tinc_mini_howto.html
 
 ** TODO FreedomBuddy [0/6]
 
@@ -487,22 +485,22 @@
 
 *** TODO Move ./build dependencies to ../
 
-    This'll help reduce dependency duplication.
+This'll help reduce dependency duplication.
 
-    Might not be worth it, as everything's moving to .debs soon, anyway.
+Might not be worth it, as everything's moving to .debs soon, anyway.
 
 *** TODO Create Debian Package
 
 *** TODO Split Message Parsing per Message Type
 
-    This will allow FBuddy to handle multiple encryption schemes.
+This will allow FBuddy to handle multiple encryption schemes.
 
 *** TODO Split Database Saving/Loading Code into Separate Module
 
-    Move the db code into /src/db/(modulename).py.
+Move the db code into /src/db/(modulename).py.
 
-    This'll allow us to support multiple database backends that we can
-    preferentially check for data.  LDAP first, shelf second, etc.
+This'll allow us to support multiple database backends that we can
+preferentially check for data.  LDAP first, shelf second, etc.
 
 *** TODO Add LDAP database backend
 
@@ -518,17 +516,17 @@
 
 *** TODO Novena Support
 
-    Must be bumped if Novena unavailable.
+Must be bumped if Novena unavailable.
 
 *** TODO Get JWChat working. [0/2]
 
 **** TODO Suppport local server connections.
 
-     Can clients on the local server exchange messages?
+Can clients on the local server exchange messages?
 
 **** TODO Suppport server connections.
 
-     Can cilents on the local server exchange messages with remote clients?
+Can cilents on the local server exchange messages with remote clients?
 
 *** CANCELED Add "get the wheezy signing key" to FM's README
     CLOSED: [2013-08-13 Tue 07:46]
@@ -572,78 +570,75 @@
 
 * FreedomBox 3.0 [0/0]
 
-  A generally usable consumer device.
+A generally usable consumer device.
 
-  Viable upgrade paths must exist between 2.0 and 3.0.
+Viable upgrade paths must exist between 2.0 and 3.0.
 
 
 * Unscheduled [0/2]
 
-  These todo items aren't currently scheduled for any milestone.
+These todo items aren't currently scheduled for any milestone.
 
 ** TODO Infrastructure [0/2]
 
 *** TODO Client Applications
 
-    The system as a whole would be easiest to manage if we were able to provide
-    recommended client-device applications as well, though nothing more than a
-    web-browser should be necessary.
+The system as a whole would be easiest to manage if we were able to provide
+recommended client-device applications as well, though nothing more than a
+web-browser should be necessary.
 
 *** TODO Universal Password Management
 
-    All the FreedomBox services should authenticate users against a single list
-    of passwords.  This can be solved via LDAP and shell-level accounts, for
-    example.
+All the FreedomBox services should authenticate users against a single list of
+passwords.  This can be solved via LDAP and shell-level accounts, for example.
 
 *** TODO Automatic Performance Benchmarking and ETA Estimation
 
-    We can manually test CPU and disk performance (number of digits of pi
-    calculated in 5 seconds, number of incremental file reads and writes in 5
-    seconds, respectively) and use that as a benchmark to provide reasonable
-    estimated-completion times for specific tasks:
+We can manually test CPU and disk performance (number of digits of pi calculated
+in 5 seconds, number of incremental file reads and writes in 5 seconds,
+respectively) and use that as a benchmark to provide reasonable
+estimated-completion times for specific tasks:
 
-    1. Benchmark any computer on the standard test actions.
-    2. Benchmark the time a particular action takes to complete.
-    3. Benchmark the target system on the standard test actions.
-    4. Estimate a particular action's completion time by scaling the time
-       benchmarks appropriately.
+1. Benchmark any computer on the standard test actions.
+2. Benchmark the time a particular action takes to complete.
+3. Benchmark the target system on the standard test actions.
+4. Estimate a particular action's completion time by scaling the time
+   benchmarks appropriately.
 
-    If the benchmarks are quick enough, we can even re-benchmark every time the
-    FBX or Plinth start up.
+If the benchmarks are quick enough, we can even re-benchmark every time the FBX
+or Plinth start up.
 
 *** TODO Look into upstreaming @synchronized
 
-    The Orange Duck provided a beautiful [[http://www.theorangeduck.com/page/synchronized-python][@synchronized]] implementation, which
-    should be upstreamed into a PEP so it's available everywhere.  Then, Plinth
-    (and other projects) should use it for their synchronized sections.
+The Orange Duck provided a beautiful [[http://www.theorangeduck.com/page/synchronized-python][@synchronized]] implementation, which should
+be upstreamed into a PEP so it's available everywhere.  Then, Plinth (and other
+projects) should use it for their synchronized sections.
 
 ** TODO FreedomMaker
 
 *** TODO Make Freedom Maker Smarter
 
-    Do a better job of abstracting away devices into configuration options.  For
-    example, if we're building for a DreamPlug target, we should enable the
-    blink-blinkenlights option (the DreamPlug has LEDs we can use to signal to
-    the user), but that should be disabled for a RaspberryPi, as that
-    functionality isn't available at best (and might cause undefined behavior in
-    the Pi at worst).
+Do a better job of abstracting away devices into configuration options.  For
+example, if we're building for a DreamPlug target, we should enable the
+blink-blinkenlights option (the DreamPlug has LEDs we can use to signal to the
+user), but that should be disabled for a RaspberryPi, as that functionality
+isn't available at best (and might cause undefined behavior in the Pi at worst).
 
-    Break out devices by type:
+Break out devices by type:
 
-    1. DreamPlug v1
-    2. RaspberryPi
-    3. VirtualBox Image
+1. DreamPlug v1
+2. RaspberryPi
+3. VirtualBox Image
 
 
 * Theory [0/1]
 
-  These items need to be thought about more.
+These items need to be thought about more.
 
 ** TODO Think about trust ratings
 
-   Services can announce how much faith they have in each peer for any
-   particular purpose.  That'd be neat.
+Services can announce how much faith they have in each peer for any particular
+purpose.  That'd be neat.
 
-   For example, if a service starts receiving updates from a peer that
-   have future time-stamps, it should signal that the peer has a screwy
-   clock.
+For example, if a service starts receiving updates from a peer that have future
+time-stamps, it should signal that the peer has a screwy clock.
