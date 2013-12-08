@@ -99,7 +99,7 @@ Nick Daly's master branch is the current root.
 - [[https://gitorious.org/key-report/][Nick Daly's Branch (gitorious)]], [[https://github.com/NickDaly/key-report/][(github)]]
 
 
-* FreedomBox 1.0 [3/9]
+* FreedomBox 1.0 [2/8]
 
 A dedicated hacker's release.  All the pieces are there, but not necessarily
 integrated as well as they should be.
@@ -354,9 +354,41 @@ Yes, Tinc has [[http://www.tinc-vpn.org/security/][problems]], but they seem to 
 
 ***** [timestamp] (user)
 
-** DONE Plinth [6/6]
-   CLOSED: [2013-09-29 Sun 18:15]
+** TODO Plinth [9/10]
    - State "DONE"       from "TODO"       [2013-09-29 Sun 18:15]
+
+*** TODO Add =includeSubDomains= to HSTS Header
+
+This will require lots of debugging and patching for each additional project we
+host.
+
+*** DONE Add HSTS
+    CLOSED: [2013-12-08 Sun 11:55]
+    - State "DONE"       from "TODO"       [2013-12-08 Sun 11:55]
+
+If we can configure HSTS on the first-boot, we should be able to better control
+some MITM attacks, because the client will refuse to load Plinth without HTTPS.
+Of course, this only works if the user uses the same client device over time,
+but not providing this protection is stupid.
+
+*** DONE Make =actions= asynchronous
+    CLOSED: [2013-12-08 Sun 11:53]
+    - State "DONE"       from "TODO"       [2013-12-08 Sun 11:53]
+
+Actions (the action scripts in the /actions directory) are currently
+synchronous, in that Plinth will wait until the action completes to return a
+response.  That's terrible for long running actions, and especially actions that
+take longer than the HTTP request's TTL, as user is brought to an error page
+even though the action is still ongoing.  Make actions asynchronous and alert
+the user when the action completes.
+
+*** DONE Remove old user configuration
+    CLOSED: [2013-12-08 Sun 11:51]
+    - State "DONE"       from "TODO"       [2013-12-08 Sun 11:51]
+
+Since we switched to bcrypt for password storage and since we fixed the user
+creation process, there's no point to keeping the old users database around.
+So, remove it before it's used inappropriately.
 
 *** DONE Provide CherryPy through Apache
     CLOSED: [2013-09-29 Sun 18:14]
