@@ -99,16 +99,36 @@
 
     - [[https://gitorious.org/key-report/][Nick Daly's Branch (gitorious)]], [[https://github.com/NickDaly/key-report/][(github)]]
 
-* FreedomBox 1.0 [3/8]
+
+* FreedomBox 1.0 [3/9]
 
   A dedicated hacker's release.  All the pieces are there, but not necessarily
   integrated as well as they should be.
 
-** TODO Infrastructure [0/1]
+** TODO Infrastructure [0/5]
 
 *** TODO Start Gluing Pieces Together
 
     At least some projects should work with Plinth and use the LDAP backend.
+
+*** TODO Use NoLogin Shell for User Accounts
+
+    For this to be successful, users must be able to manage the system without
+    loggging into the system.  If we must log into the system to manage it while
+    building it, it's not release-ready.
+
+*** TODO Make OwnCloud Setup Page Smarter and Asynchronous
+
+    OwnCloud setup (and any step that could potentially take a long time) should
+    be better handled within Plinth.  Right now, we don't handle it at all and
+    just fork a process, leaving the user to wonder why the service isn't
+    available, even though the system has obviously refreshed the page.
+
+    We don't, but should, land the user on a page that polls the state of the
+    install every few seconds with a several-minute countdown timer.  When the
+    timer reaches zero, the page redirects the user to an error page.  However,
+    if the setup process finishes at any time before then, the user is
+    redirected to the OwnCloud install.
 
 ** TODO FreedomBuddy [2/5]
 
@@ -230,6 +250,37 @@
 
     Not every device supports external storage anyway...  Just use a bigger
     card.
+
+*** DONE Unify VirtualBox and Image Build Systems
+    CLOSED: [2013-12-08 Sun 09:33]
+    - State "DONE"       from "TODO"       [2013-12-08 Sun 09:33]
+
+    The VBox image and filesystem image have completely separate dependency
+    lists.  That is bad.  Both images should pull in the same list of
+    dependencies to make sure they're functionally equivalent.
+
+    We'll need to parse the single dependency list for each image separately and
+    pass those to the dependency-getter (apt-get in one case, --package in the
+    other).  Unifying other pieces is also nice, but this is the most important.
+
+*** DONE Improve USB Formatting [2/2]
+    CLOSED: [2013-12-08 Sun 09:34]
+    - State "DONE"       from "TODO"       [2013-12-08 Sun 09:34]
+
+**** CANCELED Add usb formatting to FM's README
+     CLOSED: [2013-07-27 Sat 20:31]
+     - State "CANCELED"   from "TODO"       [2013-07-27 Sat 20:31] \\
+       If parted handles the image, we can simplify formatting a lot.
+
+**** CANCELED Move from USB image to .img with parted.
+     CLOSED: [2013-12-08 Sun 09:33]
+     - State "CANCELED"   from "TODO"       [2013-12-08 Sun 09:33] \\
+       Unnecessary after move to vmdebootstrap.
+
+     Parted's really useful.  This means we can forego using a USB device and
+     not need to mess with /etc/fstab at all.
+
+     [[file:freedom-maker/Makefile::image:%20$(STAMP)-rootfs-$(ARCHITECTURE)][file:freedom-maker/Makefile::image: $(STAMP)-rootfs-$(ARCHITECTURE)]]
 
 ** TODO Documentation [0/1]
 
@@ -377,6 +428,7 @@
 *** CANCELED Security Audit / Hammer Away at ExMachina
     CLOSED: [2013-10-06 Sun 21:36]
 
+
 * FreedomBox 2.0 [1/7]
 
   Generally Useful, includes service configuration and UI polish.
@@ -517,33 +569,61 @@
 *** CANCELED Package ExMachina
     CLOSED: [2013-10-06 Sun 21:35]
 
+
 * FreedomBox 3.0 [0/0]
 
   A generally usable consumer device.
 
   Viable upgrade paths must exist between 2.0 and 3.0.
 
-* Unscheduled [0/0]
+
+* Unscheduled [0/2]
 
   These todo items aren't currently scheduled for any milestone.
 
-** FreedomMaker
+** TODO Infrastructure [0/2]
 
-*** TODO Unify VirtualBox and Image Build Systems
+*** TODO Client Applications
 
-    The VBox image and filesystem image have completely separate dependency
-    lists.  That is bad.  Both images should pull in the same list of
-    dependencies to make sure they're functionally equivalent.
+    The system as a whole would be easiest to manage if we were able to provide
+    recommended client-device applications as well, though nothing more than a
+    web-browser should be necessary.
 
-    We'll need to parse the single dependency list for each image separately and
-    pass those to the dependency-getter (apt-get in one case, --package in the
-    other).  Unifying other pieces is also nice, but this is the most important.
+*** TODO Universal Password Management
+
+    All the FreedomBox services should authenticate users against a single list
+    of passwords.  This can be solved via LDAP and shell-level accounts, for
+    example.
+
+*** TODO Automatic Performance Benchmarking and ETA Estimation
+
+    We can manually test CPU and disk performance (number of digits of pi
+    calculated in 5 seconds, number of incremental file reads and writes in 5
+    seconds, respectively) and use that as a benchmark to provide reasonable
+    estimated-completion times for specific tasks:
+
+    1. Benchmark any computer on the standard test actions.
+    2. Benchmark the time a particular action takes to complete.
+    3. Benchmark the target system on the standard test actions.
+    4. Estimate a particular action's completion time by scaling the time
+       benchmarks appropriately.
+
+    If the benchmarks are quick enough, we can even re-benchmark every time the
+    FBX or Plinth start up.
+
+*** TODO Look into upstreaming @synchronized
+
+    The Orange Duck provided a beautiful [[http://www.theorangeduck.com/page/synchronized-python][@synchronized]] implementation, which
+    should be upstreamed into a PEP so it's available everywhere.  Then, Plinth
+    (and other projects) should use it for their synchronized sections.
+
+** TODO FreedomMaker
 
 *** TODO Make Freedom Maker Smarter
 
     Do a better job of abstracting away devices into configuration options.  For
     example, if we're building for a DreamPlug target, we should enable the
-    blink-blinkenlights option: the DreamPlug has LEDs we can use to signal to
+    blink-blinkenlights option (the DreamPlug has LEDs we can use to signal to
     the user), but that should be disabled for a RaspberryPi, as that
     functionality isn't available at best (and might cause undefined behavior in
     the Pi at worst).
@@ -554,19 +634,6 @@
     2. RaspberryPi
     3. VirtualBox Image
 
-*** TODO Improve USB Formatting [1/2]
-
-**** CANCELED Add usb formatting to FM's README
-     CLOSED: [2013-07-27 Sat 20:31]
-     - State "CANCELED"   from "TODO"       [2013-07-27 Sat 20:31] \\
-       If parted handles the image, we can simplify formatting a lot.
-
-**** TODO Move from USB image to .img with parted.
-
-     Parted's really useful.  This means we can forego using a USB device and
-     not need to mess with /etc/fstab at all.
-
-     [[file:freedom-maker/Makefile::image:%20$(STAMP)-rootfs-$(ARCHITECTURE)][file:freedom-maker/Makefile::image: $(STAMP)-rootfs-$(ARCHITECTURE)]]
 
 * Theory [0/1]
 
