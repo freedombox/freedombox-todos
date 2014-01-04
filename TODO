@@ -1,4 +1,4 @@
-# -*- mode: org; mode: auto-fill; fill-column: 80 -*-
+# -*- mode: org; mode: auto-fill; fill-column: 80; mode: org-indent; -*-
 
 #+TODO: TODO(t) WAIT(w@/!) | DONE(d!) CANCELED(c@)
 
@@ -354,8 +354,21 @@ Yes, Tinc has [[http://www.tinc-vpn.org/security/][problems]], but they seem to 
 
 ***** [timestamp] (user)
 
-** TODO Plinth [9/10]
+** TODO Plinth [9/12]
    - State "DONE"       from "TODO"       [2013-09-29 Sun 18:15]
+
+*** TODO Create a Module Manager Module
+
+It shouldn't be on the user to remove symlinks from plinth/modules to disable
+Owncloud or Owncloud management.  This also makes it possible to include "add"
+and "remove" actions in each module that can run services that need no user
+configuration.
+
+This module should be enabled by default.
+
+*** TODO Create an ~/etc~ Configuration Manager Module
+
+Allows user to roll back and fork their ~/etc~ configuration via /etckeeper/.
 
 *** TODO Add =includeSubDomains= to HSTS Header
 
@@ -450,7 +463,7 @@ Might not be worth it, as everything's moving to .debs soon.
     CLOSED: [2013-08-01 Thu 22:13]
     - State "DONE"       from "TODO"       [2013-08-01 Thu 22:13]
 
-    [[file:key-report/key-report.py]]
+[[file:key-report/key-report.py]]
 
 ** CANCELED ExMachina [1/1]
    CLOSED: [2013-10-06 Sun 21:36]
@@ -465,7 +478,7 @@ Generally Useful, includes service configuration and UI polish.
 
 Infrastructure packages should be available in Debian Testing.
 
-** TODO Plinth [1/11]
+** TODO Plinth [1/14]
 
 Integrate more services.
 
@@ -482,6 +495,9 @@ See freedombox-privoxy's "make_deb.sh".
 *** TODO Integrate Blog
 
 *** TODO Integrate Wiki
+
+Ikiwiki can use the http_auth module to manage logins via REMOTE_USER and can
+take the setup logic from [[https://bitbucket.org/nickdaly/plugserver/src/tip/setup/wiki/][Plug Server's Wiki Setup Scripts]].
 
 *** TODO Integrate Friendica
 
@@ -510,6 +526,25 @@ Might be broken out into a separate heartbeat project.
 **** TODO Tinc Testing
 
 http://www.vanheusden.com/linux/tinc_mini_howto.html
+
+*** TODO Divide plinth/modules into modules/available and modules/enabled
+
+Making it look a little more like the Apache configuration will make it easier
+to manage and understand in the future.
+
+*** TODO Run =etc-keeper --commit= Before Each Action
+
+Actions change ~/etc~.  To make ~/etc~ manageable, we should commit ~/etc~
+changes before and after running each action.
+
+Committing changes before each action will capture the system's state before the
+action changes things.  This can include changes made *outside* Plinth.
+
+Committing changes after each action will capture the system's state after the
+action changes things.  This should only include changes made *by* Plinth.
+
+Combining both before and after snapshots should allow users to separate changes
+made by Plinth from changes made through other methods.
 
 ** TODO FreedomBuddy [0/6]
 
@@ -571,7 +606,25 @@ Can cilents on the local server exchange messages with remote clients?
 
 *** TODO Package Key Report
 
-** TODO Infrastructure [0/5]
+** TODO Infrastructure [0/6]
+
+*** TODO Add Single-Sign-On Support
+
+If each service for each user on the FreedomBox manages its own users and
+passwords, then each service will have completely unrelated usernames and
+passwords for each user.  To avoid password hell, the box should manage accounts
+and passwords /for each service:/ each service should let the box manage logins.
+
+We can do this via the REMOTE_USER request header: Apache can handle this header
+through [[https://httpd.apache.org/docs/trunk/en/mod/mod_authnz_ldap.html][LDAP with mod_authnz_ldap]] and [[https://code.google.com/p/mod-auth-external/][PAM with mod-auth-external]] (packaged as
+libapache2-mod-authnz-external), while nginx can handle this header through [[http://web.iti.upv.es/~sto/nginx/][PAM
+with ngx_http_auth_pam_module]] (packaged in Debian) and [[https://github.com/kvspb/nginx-auth-ldap][LDAP with nginx-auth-ldap]]
+(not packaged in Debian).
+
+Now, each service just needs to support the REMOTE_USER header.  Adopting this
+method should make it easier to transition to using PGP keys as authenticators
+later: the LDAP system should be able to associate system-level accounts with
+PGP keys.
 
 *** TODO Use FreedomBuddy and/or Tinc to connect all services.
 
@@ -600,11 +653,19 @@ Can cilents on the local server exchange messages with remote clients?
     CLOSED: [2013-10-06 Sun 21:35]
 
 
-* FreedomBox 3.0 [0/0]
+* FreedomBox 3.0 [0/1]
 
 A generally usable consumer device.
 
 Viable upgrade paths must exist between 2.0 and 3.0.
+
+** TODO Plinth [0/1]
+
+*** TODO Split Plinth into Multiple Debian Packages
+
+Every (non-core) module should be its own package to make remixing the system
+easier (i.e., create a Plinth-Owncloud module that contains modules/owncloud.py,
+which depends on Owncloud).
 
 
 * Unscheduled [0/2]
