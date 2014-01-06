@@ -488,6 +488,53 @@ Integrate more services.
 
 See freedombox-privoxy's "make_deb.sh".
 
+*** TODO Create ~/bin/echo~ and ~/bin/id~ Actions Only While Testing
+
+This will fix a lintian error.  Those actions should be created by the test
+script and they should be removed when the testing is complete.
+
+*** TODO Plinth Handles Missing Actions Gracefully
+
+If an action isn't available, Plinth should handle that failure gracefully and
+not crash or ignore the missing action.
+
+*** TODO Suggest, Don't Depend On, PyContract
+
+This will fix a lintian error.
+
+PyContract is working and stable, but orphaned.  It's handy and helpful, but
+strictly unnecessary.  Specifically, since PyContract makes comments executable,
+it should be invisible when missing:
+
+#+begin_src python
+  try:
+      import contract
+  except ImportError:
+      print("To enable contract checking, install Python Contract.")
+
+  def add_positive(a, b):
+      """Add positive numbers.
+
+      pre:
+          a > 0
+          b > 0
+      inv:
+          hasattr(a, "__add__")
+          hasattr(b, "__add__")
+      post[a, b]:
+          __return__ > a
+          __return__ > b
+          a == __old__.a
+          b == __old__.b
+
+      """
+      return a + b
+
+#+end_src
+
+The contract is checked when pycontract is available and has no functional
+effects when pycontract isn't available (or when Python is run with ~-O3~).
+
 *** TODO Integrate OONI
 
 *** TODO Integrate Tor
