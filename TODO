@@ -99,12 +99,27 @@ Nick Daly's master branch is the current root.
 - [[https://gitorious.org/key-report/][Nick Daly's Branch (gitorious)]], [[https://github.com/NickDaly/key-report/][(github)]]
 
 
+* FreedomBox Pre-1.0 [0/1]
+
+** TODO Infrastructure [0/1]
+
+*** TODO Release Development VM
+
+The VM will be pre-configured to make development and testing straightforward.
+
+
 * FreedomBox 1.0 [2/8]
 
 A dedicated hacker's release.  All the pieces are there, but not necessarily
 integrated as well as they should be.
 
-** TODO Infrastructure [0/5]
+** TODO Infrastructure [0/4]
+
+*** TODO Fix DreamPlug MAC Addresses
+
+Reflashing the DreamPlug's bootloader erases the interface MAC addresses.  We
+should either save the MAC addresses or re-generate correct MAC addresses for
+the DreamPlug.
 
 *** TODO Start Gluing Pieces Together
 
@@ -204,7 +219,7 @@ This'll help unify the dependencies at the file level.
 
 Might not be worth it, as everything's moving to .debs soon.
 
-** TODO Freedom Maker [4/9]
+** TODO Freedom Maker [6/11]
 
 *** TODO Add LDAP Backend
 
@@ -700,11 +715,18 @@ PGP keys.
     CLOSED: [2013-10-06 Sun 21:35]
 
 
-* FreedomBox 3.0 [0/1]
+* FreedomBox 3.0 [0/2]
 
 A generally usable consumer device.
 
 Viable upgrade paths must exist between 2.0 and 3.0.
+
+** TODO Infrastructure [0/1]
+
+*** TODO Generally Disable Logging
+
+FreedomBoxes shouldn't be able to compromise previous end users after they're
+affected by malware.
 
 ** TODO Plinth [0/1]
 
@@ -719,7 +741,7 @@ which depends on Owncloud).
 
 These todo items aren't currently scheduled for any milestone.
 
-** TODO Infrastructure [0/2]
+** TODO Infrastructure [0/4]
 
 *** TODO Client Applications
 
@@ -754,7 +776,7 @@ The Orange Duck provided a beautiful [[http://www.theorangeduck.com/page/synchro
 be upstreamed into a PEP so it's available everywhere.  Then, Plinth (and other
 projects) should use it for their synchronized sections.
 
-** TODO FreedomMaker
+** TODO FreedomMaker [0/1]
 
 *** TODO Make Freedom Maker Smarter
 
