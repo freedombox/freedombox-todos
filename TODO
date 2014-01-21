@@ -121,6 +121,41 @@ Reflashing the DreamPlug's bootloader erases the interface MAC addresses.  We
 should either save the MAC addresses or re-generate correct MAC addresses for
 the DreamPlug.
 
+If you're affected by this issue, you'll see these errors:
+
+#+begin_example
+  Internet Systems Consortium DHCP Client 4.2.4
+  Copyright 2004-2012 Internet Systems Consortium.
+  All rights reserved.
+  For info, please visit https://www.isc.org/software/dhcp/
+
+  RTNETLINK answers: Cannot assign requested address
+  Listening on LPF/eth1/00:00:00:00:00:00
+  Sending on   LPF/eth1/00:00:00:00:00:00
+  Sending on   Socket/fallback
+  DHCPDISCOVER on eth1 to 255.255.255.255 port 67 interval 8
+  send_packet: Network is down
+  dhclient.c:1909: Failed to send 300 byte long packet over eth1 interface.
+  receive_packet failed on eth1: Network is down
+
+#+end_example
+
+The key indicator of this error is seeing this line when running ~ifup~:
+
+: receive_packet failed on eth1: Network is down
+
+To correct this, we'll need to set the MAC address for each of the available
+interfaces.  The most obvious way to do this is probably through adding a line
+to each interface's stanza in ~/etc/network/interfaces~ that sets the MAC
+address:
+
+: hwaddress ether 00:00:00:00:00:01
+
+Or, we can just use something like ~macchanger~.
+
+Or, since macchanger has no knowledge of ~/etc/network/interfaces~, we can just
+add random data ourselves.
+
 *** TODO Start Gluing Pieces Together
 
 At least some projects should work with Plinth and use the LDAP backend.
