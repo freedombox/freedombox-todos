@@ -733,6 +733,14 @@ PGP keys.
 
 *** TODO Improve Firefox to handle PGP-certified-X509-certs
 
+*** TODO Include a Smarter MAC Changer
+
+Rely on something like this:
+
+https://github.com/Boruch-Baum/mac_changer_choice
+
+Make sure it's packaged, though.
+
 ** TODO Documentation [0/4]
 
 *** TODO Clarify Authentication vs Authorization in the System
