@@ -1,0 +1,253 @@
+# -*- mode: org; mode: auto-fill; fill-column: 80; mode: org-indent; -*-
+
+#+TODO: TODO(t) WAIT(w@/!) | DONE(d!) CANCELED(c@)
+
+* Introduction
+
+This is an integrated TODO list for the FreedomBox project, compiling todos from
+each of the included projects.  This list includes all the completed or canceled
+items, to avoid cluttering up the active TODO list with irrelevant noise.
+
+Specifically, it includes third-level headlines that are complete.  It doesn't go
+any deeper, because those start including subtasks which are often dependent on
+one another for context.
+
+
+* FreedomBox 1.0
+
+** FreedomBuddy [2/2]
+
+*** DONE Finish FreedomBuddy UI
+CLOSED: [2013-07-28 Sun 14:12]
+- State "DONE"       from "TODO"       [2013-07-28 Sun 14:12]
+
+*** CANCELED Move ./build dependencies to ../
+CLOSED: [2013-07-28 Sun 14:12]
+- State "CANCELED"   from "TODO"       [2013-07-28 Sun 14:12] \\
+  Fixing dependency duplication for FBuddy specifically is worth less
+  than moving to .debs, and will break FBuddy for non-FBX installs,
+  anyway.
+
+This'll help unify the dependencies at the file level.
+
+Might not be worth it, as everything's moving to .debs soon.
+
+** Freedom Maker [10/10]
+
+*** DONE Create target specific /etc/network/interfaces
+CLOSED: [2014-01-29 Wed 21:07]
+- State "DONE" from "TODO" [2014-01-29 Wed 21:07]
+
+*** CANCELED Update the login message to mention passwords and intro file.
+CLOSED: [2014-01-29 Wed 21:10]
+- State "CANCELED" from "TODO" [2014-01-29 Wed 21:10] \\
+  Unnecessary now that the Plinth UI is available on first boot.
+
+*** CANCELED Write an intro file so users can =less hello=
+CLOSED: [2014-01-29 Wed 21:10]
+- State "CANCELED"   from "TODO"       [2014-01-29 Wed 21:10] \\
+  Also unnecessary since Plinth.
+
+This will be the user's crash course to their freedombox.
+
+*** CANCELED Add tcp torrent tracker for built images
+CLOSED: [2014-01-29 Wed 21:10]
+- State "CANCELED"   from "TODO"       [2014-01-29 Wed 21:10] \\
+  That can be removed altogether, it presumes unlikely service config.
+
+#+begin_ascii
+  The tracker URL in the torrent file uses UDP, which is not universally
+  supported in Debian (bug #638194).
+#+end_ascii
+
+*** DONE Make Plinth Launch on Startup
+CLOSED: [2013-11-10 Sun 14:36]
+- State "DONE"       from "TODO"       [2013-11-10 Sun 14:36]
+
+- Make plinth in FM during image build process, or,
+
+- Build some giant startup script to run Plinth that handles everything:
+
+  - make-ing plinth
+  - other requirements
+
+Plinth's own start.sh should handle its own local installation, nothing else.
+The big script should probably assume ~/exmachina is available.
+
+*** DONE Add RaspberryPi target
+CLOSED: [2013-11-10 Sun 14:28]
+- State "DONE"       from "TODO"       [2013-11-10 Sun 14:28]
+
+*** DONE Merge Freedom Maker Shiny into Master
+
+*** CANCELED Move /var and /home to external SD card?
+CLOSED: [2013-07-27 Sat 20:53]
+- State "CANCELED"   from "TODO"       [2013-07-27 Sat 20:53]
+
+Not every device supports external storage anyway...  Just use a bigger card.
+
+*** DONE Unify VirtualBox and Image Build Systems
+CLOSED: [2013-12-08 Sun 09:33]
+- State "DONE"       from "TODO"       [2013-12-08 Sun 09:33]
+
+The VBox image and filesystem image have completely separate dependency lists.
+That is bad.  Both images should pull in the same list of dependencies to make
+sure they're functionally equivalent.
+
+We'll need to parse the single dependency list for each image separately and
+pass those to the dependency-getter (apt-get in one case, --package in the
+other).  Unifying other pieces is also nice, but this is the most important.
+
+*** DONE Improve USB Formatting [2/2]
+CLOSED: [2013-12-08 Sun 09:34]
+- State "DONE"       from "TODO"       [2013-12-08 Sun 09:34]
+
+**** CANCELED Add usb formatting to FM's README
+CLOSED: [2013-07-27 Sat 20:31]
+- State "CANCELED"   from "TODO"       [2013-07-27 Sat 20:31] \\
+  If parted handles the image, we can simplify formatting a lot.
+
+**** DONE Move from USB image to .img with parted.
+CLOSED: [2013-12-08 Sun 09:33]
+- State "DONE"       from "CANCELED"   [2014-01-29 Wed 21:12] \\
+  Fixed with move to vmdebootstrap.
+- State "CANCELED"   from "TODO"       [2013-12-08 Sun 09:33] \\
+  Unnecessary after move to vmdebootstrap.
+
+Parted's really useful.  This means we can forego using a USB device and not
+need to mess with /etc/fstab at all.
+
+[[file:freedom-maker/Makefile::image: $(STAMP)-rootfs-$(ARCHITECTURE)]]
+
+** Plinth [9/9]
+CLOSED: [2014-01-29 Wed 22:25]
+- State "DONE"       from "TODO"       [2014-01-29 Wed 22:25]
+
+*** DONE Add HSTS
+CLOSED: [2013-12-08 Sun 11:55]
+- State "DONE"       from "TODO"       [2013-12-08 Sun 11:55]
+
+If we can configure HSTS on the first-boot, we should be able to better control
+some MITM attacks, because the client will refuse to load Plinth without HTTPS.
+Of course, this only works if the user uses the same client device over time,
+but not providing this protection is stupid.
+
+*** DONE Make =actions= asynchronous
+CLOSED: [2013-12-08 Sun 11:53]
+- State "DONE"       from "TODO"       [2013-12-08 Sun 11:53]
+
+Actions (the action scripts in the /actions directory) are currently
+synchronous, in that Plinth will wait until the action completes to return a
+response.  That's terrible for long running actions, and especially actions that
+take longer than the HTTP request's TTL, as user is brought to an error page
+even though the action is still ongoing.  Make actions asynchronous and alert
+the user when the action completes.
+
+*** DONE Remove old user configuration
+CLOSED: [2013-12-08 Sun 11:51]
+- State "DONE"       from "TODO"       [2013-12-08 Sun 11:51]
+
+Since we switched to bcrypt for password storage and since we fixed the user
+creation process, there's no point to keeping the old users database around.
+So, remove it before it's used inappropriately.
+
+*** DONE Provide CherryPy through Apache
+CLOSED: [2013-09-29 Sun 18:14]
+- State "DONE"       from "TODO"       [2013-09-29 Sun 18:14]
+
+*** DONE Don't POST password... EVER.
+CLOSED: [2013-09-29 Sun 18:14]
+- State "DONE"       from "TODO"       [2013-09-29 Sun 18:14]
+
+We currently post on login fails.
+
+Now irrelevant, as Plinth is behind HTTPS, but still fixed, anyway.
+
+*** DONE CherryPy HTTPRedirects Shouldn't Go To 127.0.0.1
+CLOSED: [2013-09-29 Sun 18:15]
+- State "DONE"       from "TODO"       [2013-09-29 Sun 18:15]
+
+They shouldn't change the server's name.
+
+Fixed by putting CherryPy behind Apache.
+
+*** DONE Include missing dependencies. [4/4]
+CLOSED: [2013-09-08 Sun 14:59]
+- State "DONE"       from "TODO"       [2013-09-08 Sun 14:59]
+- State "DONE"       from "TODO"       [2013-07-28 Sun 20:14]
+
+- [X] psmisc
+- [X] python2.7
+- [X] libpython2.7
+- [X] sudo
+
+*** DONE Move /build to /vendor
+CLOSED: [2013-07-28 Sun 20:15]
+- State "DONE"       from "TODO"       [2013-07-28 Sun 20:12]
+
+Do it for consistency with freedombox-privoxy and freedom-maker.
+
+Update references in:
+
+- plinth/start.sh
+- plinth/Makefile
+
+*** CANCELED Move ./build dependencies to ../
+CLOSED: [2013-07-28 Sun 14:12]
+- State "CANCELED"   from "TODO"       [2013-07-28 Sun 14:12] \\
+  Fixing dependency duplication for FBuddy specifically is worth less
+  than moving to .debs, and will break FBuddy for non-FBX installs,
+  anyway.
+
+This'll help unify the dependencies at the file level.
+
+Might not be worth it, as everything's moving to .debs soon.
+
+** Key Report [1/1]
+
+*** DONE Create Key/Cert Expiry Reporting Tools
+CLOSED: [2013-08-01 Thu 22:13]
+- State "DONE"       from "TODO"       [2013-08-01 Thu 22:13]
+
+[[file:key-report/key-report.py]]
+
+** ExMachina [1/1]
+
+*** CANCELED Security Audit / Hammer Away at ExMachina
+CLOSED: [2013-10-06 Sun 21:36]
+
+
+* FreedomBox 2.0
+
+** ExMachina [1/1]
+
+*** CANCELED Package ExMachina
+CLOSED: [2013-10-06 Sun 21:35]
+
+** FreedomMaker [4/4]
+
+*** DONE Replace Spinifex Firmware with Libertas-fw package.
+CLOSED: [2014-01-29 Wed 22:02]
+- State "DONE"       from "TODO"       [2014-01-29 Wed 22:02]
+
+*** DONE Debian-Package Freedom Maker
+CLOSED: [2013-10-06 Sun 21:35]
+- State "DONE"       from "TODO"       [2013-10-06 Sun 21:35]
+
+*** CANCELED Add fbx to /etc/sudoers?
+CLOSED: [2014-01-29 Wed 22:02]
+- State "CANCELED"   from "TODO"       [2014-01-29 Wed 22:02]
+
+*** CANCELED Add "get the wheezy signing key" to FM's README
+CLOSED: [2013-08-13 Tue 07:46]
+- State "CANCELED"   from "TODO"       [2013-08-13 Tue 07:46] \\
+  Now that Wheezy's Stable, this is done automagically.
+
+** Plinth [1/1]
+
+*** DONE Produce Plinth Debian Package
+CLOSED: [2013-10-06 Sun 21:34]
+- State "DONE"       from "TODO"       [2013-10-06 Sun 21:34]
+
+See freedombox-privoxy's "make_deb.sh".
+

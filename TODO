@@ -84,7 +84,8 @@ Nick Daly's master branch is the current root.
 
 *** Publish
 
-Publish publishes projects in the simplest ways possible.
+Publish publishes projects (including bug trackers, wikis, and source archives)
+in the simplest ways possible.
 
 Nick Daly's master branch is the current root.
 
@@ -108,10 +109,57 @@ Nick Daly's master branch is the current root.
 The VM will be pre-configured to make development and testing straightforward.
 
 
-* FreedomBox 1.0 [2/8]
+* FreedomBox 1.0 [0/5]
 
 A dedicated hacker's release.  All the pieces are there, but not necessarily
 integrated as well as they should be.
+
+** TODO Documentation [0/1]
+
+*** TODO Write Developer Documentation
+
+Take the current state of the FBX and write up how to use all the parts
+together.
+
+** TODO FreedomBuddy [0/2]
+
+*** TODO Write FreedomBuddy Threat Model
+:PROPERTIES:
+:Attachments: fbuddy-threat-model
+:ID:       fc7e9d5e-7db7-4b7c-9efa-f5ca23d0eff5
+:END:
+
+- http://wiki.openitp.org/peerreviewboard:start
+
+- [[file:data/fc/7e9d5e-7db7-4b7c-9efa-f5ca23d0eff5/fbuddy-threat-model.org][FreedomBuddy Threat Model]]
+
+*** TODO Add Contracts to Functions.
+
+Use PyContract to verify functional contracts.
+
+** TODO Freedom Maker [0/1]
+
+*** TODO Add Single Sign On Support
+
+Each service should use the FreedomBox's own user-level logins and should *not*
+manage its own user names or passwords.  The goal is to improve security by
+saving users from having to juggle multiple passwords.
+
+If each service for each user on the FreedomBox manages its own users and
+passwords, then each service will have completely unrelated usernames and
+passwords for each user.  To avoid password hell, the box should manage accounts
+and passwords /for each service:/ each service should let the box manage logins.
+
+We can do this via the REMOTE_USER request header: Apache can handle this header
+through [[https://httpd.apache.org/docs/trunk/en/mod/mod_authnz_ldap.html][LDAP with mod_authnz_ldap]] and [[https://code.google.com/p/mod-auth-external/][PAM with mod-auth-external]] (packaged as
+libapache2-mod-authnz-external), while nginx can handle this header through [[http://web.iti.upv.es/~sto/nginx/][PAM
+with ngx_http_auth_pam_module]] (packaged in Debian) and [[https://github.com/kvspb/nginx-auth-ldap][LDAP with nginx-auth-ldap]]
+(not packaged in Debian).
+
+Now, each service just needs to support the REMOTE_USER header.  Adopting this
+method should make it easier to transition to using PGP keys as authenticators
+later: the LDAP system should be able to associate system-level accounts with
+PGP keys.
 
 ** TODO Infrastructure [0/4]
 
@@ -151,35 +199,64 @@ address:
 
 : hwaddress ether 00:00:00:00:00:01
 
-Or, we can just use something like ~macchanger~.
+Or, we can just use something like ~macchanger~:
+
+: macchanger -a eth1
 
 Or, since macchanger has no knowledge of ~/etc/network/interfaces~, we can just
 add random data ourselves.
 
-*** TODO Start Gluing Pieces Together
+*** TODO Automatically Set Time on First Boot
 
-At least some projects should work with Plinth and use the LDAP backend.
+Prompt user to verify time.
 
-*** TODO Use NoLogin Shell for User Accounts
+*** TODO Determine Where Smooth Upgrade Paths Exist
 
-For this to be successful, users must be able to manage the system without
-loggging into the system.  If we must log into the system to manage it while
-building it, it's not release-ready.
+Smooth upgrade paths will not exist before 1.0, there's simply too much that
+could change at any time.  We don't want to constrain ourselves to bad
+architecture decisions that don't scale.  However, at some point between 1.0 and
+3.0, they must exist.  So, will smooth upgrade paths exist from 1.0 to 2.0 and
+beyond, from 2.0 to 3.0 and beyond, or only from 3.0 and beyond?
 
-*** TODO Make OwnCloud Setup Page Smarter and Asynchronous
+*** TODO Release 1 End User Service
 
-OwnCloud setup (and any step that could potentially take a long time) should be
-better handled within Plinth.  Right now, we don't handle it at all and just
-fork a process, leaving the user to wonder why the service isn't available, even
-though the system has obviously refreshed the page.
+At least one service should work with Plinth and use the SSO system, like the
+wiki project.
 
-We don't, but should, land the user on a page that polls the state of the
-install every few seconds with a several-minute countdown timer.  When the timer
-reaches zero, the page redirects the user to an error page.  However, if the
-setup process finishes at any time before then, the user is redirected to the
-OwnCloud install.
+** TODO Plinth [0/1]
+- State "DONE"       from "TODO"       [2013-09-29 Sun 18:15]
 
-** TODO FreedomBuddy [2/5]
+*** TODO Create a Module Manager Module
+
+It shouldn't be on the user to remove symlinks from plinth/modules to disable
+Owncloud or Owncloud management.  This also makes it possible to include "add"
+and "remove" actions in each module that can run services that need no user
+configuration.
+
+This module should be enabled by default.
+
+
+* FreedomBox 2.0 [0/8]
+
+Generally Useful, includes service configuration and UI polish.
+
+Infrastructure packages should be available in Debian Testing.
+
+** TODO Documentation [0/4]
+
+*** TODO Clarify Authentication vs Authorization in the System
+
+*** TODO Clean up FBF Wiki
+
+*** TODO Coordinate End User Documentation
+
+*** TODO Update FBF.org Style for Butterfly Logo
+
+** TODO FreedomBox Setup [0/1]
+
+*** TODO Deliver FreedomBox Setup Debian Package
+
+** TODO FreedomBuddy [0/7]
 
 *** TODO Finish Basic FreedomBuddy Functionality [0/2]
 
@@ -214,7 +291,7 @@ contain the current default services:
 If default services aren't found in the saved data, they're read from the config
 file.
 
-***** TODO Reject "Default" Key Updates
+<***** TODO Reject "Default" Key Updates
 
 The "Default" key is a special, protected, key (maybe 0, maybe "default") for
 which all external service updates are rejected, in the same way the
@@ -225,117 +302,269 @@ which all external service updates are rejected, in the same way the
 The services you want to host for other people are copied to their service list
 whenever a new key is added.
 
-*** TODO Write FreedomBuddy Threat Model
-    :PROPERTIES:
-    :Attachments: fbuddy-threat-model
-    :ID:       fc7e9d5e-7db7-4b7c-9efa-f5ca23d0eff5
-    :END:
+*** TODO Finish FreedomBuddy UI
 
-- http://wiki.openitp.org/peerreviewboard:start
+Support friendly names for servers and services.  I expect Plinth will scrape
+this data from FBuddy to display in an internal Plinth module.
 
-- [[file:data/fc/7e9d5e-7db7-4b7c-9efa-f5ca23d0eff5/fbuddy-threat-model.org][FreedomBuddy Threat Model]]
+What would that UI look like?
 
-*** TODO Add Contracts to functions.
+| Servers | Services                |
+|---------+-------------------------|
+| Joe     | wiki                    |
+|         | blog                    |
+|         | The Lead Rose (emoblog) |
+| Pam     | coffee                  |
+| Tina    | Tinipedia (wiki)        |
 
-Use PyContract to verify functional contracts.
+Here, Joe provides both a blog and an emoblog.
 
-*** DONE Finish FreedomBuddy UI
-    CLOSED: [2013-07-28 Sun 14:12]
-    - State "DONE"       from "TODO"       [2013-07-28 Sun 14:12]
+If the service specifies a friendly name:
 
-*** CANCELED Move ./build dependencies to ../
-    CLOSED: [2013-07-28 Sun 14:12]
-    - State "CANCELED"   from "TODO"       [2013-07-28 Sun 14:12] \\
-      Fixing dependency duplication for FBuddy specifically is worth less
-      than moving to .debs, and will break FBuddy for non-FBX installs,
-      anyway.
+: Service Name (service type)
 
-This'll help unify the dependencies at the file level.
+Else:
 
-Might not be worth it, as everything's moving to .debs soon.
+: Service Type
 
-** TODO Freedom Maker [6/11]
+Users must specify a friendly name for Servers.
 
-*** TODO Add LDAP Backend
+*** TODO Move ./build dependencies to ../
 
-*** TODO Create target specific /etc/network/interfaces
+This'll help reduce dependency duplication.
 
-*** TODO Update the login message to mention passwords and intro file.
+Might not be worth it, as everything's moving to .debs soon, anyway.
 
-*** TODO Write an intro file so users can =less hello=
+*** TODO Deliver Debian Package
 
-This will be the user's crash course to their freedombox.
+*** TODO Split Message Parsing per Encryption Method
 
-*** TODO Add tcp torrent tracker for built images
+This will allow FBuddy to handle multiple encryption schemes.
 
-#+begin_ascii
-  The tracker URL in the torrent file uses UDP, which is not universally
-  supported in Debian (bug #638194).
-#+end_ascii
+*** TODO Split Database Saving/Loading Code into Separate Module
 
-*** DONE Make Plinth Launch on Startup
-    CLOSED: [2013-11-10 Sun 14:36]
-    - State "DONE"       from "TODO"       [2013-11-10 Sun 14:36]
+Move the db code into /src/db/(modulename).py.
 
-- Make plinth in FM during image build process, or,
+This'll allow us to support multiple database backends that we can
+preferentially check for data.  LDAP first, shelf second, etc.
 
-- Build some giant startup script to run Plinth that handles everything:
+*** TODO Add LDAP database backend
 
-  - make-ing plinth
-  - other requirements
+** TODO Freedom Maker [4/5]
 
-Plinth's own start.sh should handle its own local installation, nothing else.
-The big script should probably assume ~/exmachina is available.
+*** TODO Get JWChat working. [0/2]
 
-*** DONE Add RaspberryPi target
-    CLOSED: [2013-11-10 Sun 14:28]
-    - State "DONE"       from "TODO"       [2013-11-10 Sun 14:28]
+**** TODO Suppport local server connections.
 
-*** DONE Merge Freedom Maker Shiny into Master
+Can clients on the local server exchange messages?
 
-*** CANCELED Move /var and /home to external SD card?
-    CLOSED: [2013-07-27 Sat 20:53]
-    - State "CANCELED"   from "TODO"       [2013-07-27 Sat 20:53]
+**** TODO Suppport server connections.
 
-Not every device supports external storage anyway...  Just use a bigger card.
+Can cilents on the local server exchange messages with remote clients?
 
-*** DONE Unify VirtualBox and Image Build Systems
-    CLOSED: [2013-12-08 Sun 09:33]
-    - State "DONE"       from "TODO"       [2013-12-08 Sun 09:33]
+** TODO Infrastructure [0/7]
 
-The VBox image and filesystem image have completely separate dependency lists.
-That is bad.  Both images should pull in the same list of dependencies to make
-sure they're functionally equivalent.
+*** TODO Use NoLogin Shell for User Accounts
 
-We'll need to parse the single dependency list for each image separately and
-pass those to the dependency-getter (apt-get in one case, --package in the
-other).  Unifying other pieces is also nice, but this is the most important.
+For this to be successful, users must be able to manage the system without
+loggging into the system.  If we must log into the system to manage it while
+building it, it's not release-ready.
 
-*** DONE Improve USB Formatting [2/2]
-    CLOSED: [2013-12-08 Sun 09:34]
-    - State "DONE"       from "TODO"       [2013-12-08 Sun 09:34]
+*** TODO Use FreedomBuddy and/or Tinc to connect all services.
 
-**** CANCELED Add usb formatting to FM's README
-     CLOSED: [2013-07-27 Sat 20:31]
-     - State "CANCELED"   from "TODO"       [2013-07-27 Sat 20:31] \\
-       If parted handles the image, we can simplify formatting a lot.
+Services may have to become FreedomBuddy aware.  Right now, it's impossible to
+say "connect to Joe" and have that command mean anything useful.
 
-**** CANCELED Move from USB image to .img with parted.
-     CLOSED: [2013-12-08 Sun 09:33]
-     - State "CANCELED"   from "TODO"       [2013-12-08 Sun 09:33] \\
-       Unnecessary after move to vmdebootstrap.
+*** TODO Glue Pieces Together
 
-Parted's really useful.  This means we can forego using a USB device and not
-need to mess with /etc/fstab at all.
+*** TODO Deliver FreedomBox Debian Meta-Package
 
-[[file:freedom-maker/Makefile::image: $(STAMP)-rootfs-$(ARCHITECTURE)]]
+*** TODO Improve GNUTLS
 
-** TODO Documentation [0/1]
+*** TODO Improve Firefox to handle PGP-certified-X509-certs
 
-*** TODO Write Developer Documentation
+*** TODO Include a Smarter MAC Changer
 
-Take the current state of the FBX and write up how to use all the parts
-together.
+Rely on something like this:
+
+https://github.com/Boruch-Baum/mac_changer_choice
+
+Make sure it's packaged, though.
+
+** TODO Key Report [0/3]
+
+*** TODO Automatically write emails for critical and warning keys.
+
+*** WAIT Package Key Report
+- State "WAIT"       from "TODO"       [2014-01-29 Wed 20:33] \\
+  Jonas submitted [[http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=722554][bug 722554]].
+
+*** TODO Make Human-Readable Mode
+
+The output is intended for other utilities and isn't human readable right now.
+There should be such a human-friendly mode.
+
+** TODO Plinth [1/23]
+
+Integrate more services.
+
+*** TODO Add =includeSubDomains= to HSTS Header
+
+This will require lots of debugging and patching for each additional project we
+host.
+
+*** TODO Create ~/bin/echo~ and ~/bin/id~ Actions Only While Testing
+
+This will fix a lintian error.  Those actions should be created by the test
+script and they should be removed when the testing is complete.
+
+*** TODO Plinth Handles Missing Actions Gracefully
+
+If an action isn't available, Plinth should handle that failure gracefully and
+not crash or ignore the missing action.
+
+*** TODO Make (OwnCloud) Setup Page Smarter and Asynchronous
+
+OwnCloud setup (and any step that could potentially take a long time) should be
+better handled within Plinth.  Right now, we don't handle it at all and just
+fork a process in the background, leaving the user to wonder why the service
+isn't available, even though the system has obviously refreshed the page.
+
+We don't, but should, land the user on a page that polls the state of the
+install every few seconds with a several-minute countdown timer.  When the timer
+reaches zero, the page redirects the user to an error page.  However, if the
+setup process finishes at any time before then, the user is redirected to the
+OwnCloud install.
+
+*** TODO Suggest, Don't Depend On, PyContract
+
+This will fix a lintian error.
+
+PyContract is working and stable, but orphaned.  It's handy and helpful, but
+strictly unnecessary.  Specifically, since PyContract makes comments executable,
+it should be invisible when missing:
+
+#+begin_src python
+  try:
+      import contract
+  except ImportError:
+      print("To enable contract checking, install Python Contract.")
+
+  def add_positive(a, b):
+      """Add positive numbers.
+
+      PyContract automatically evaluates these commetns for truthiness
+      during execution.
+
+      pre:         # before calling add_positive
+          a > 0
+          b > 0
+
+      post[a, b]:  # after calling add_positive
+          __return__ > a
+          __return__ > b
+          a == __old__.a
+          b == __old__.b
+
+      inv:         # before and after calling add_positive
+          hasattr(a, "__add__")
+          hasattr(b, "__add__")
+
+      """
+      return a + b
+
+#+end_src
+
+The contract is checked when pycontract is available and has no functional
+effects when pycontract isn't available (or when Python is run with ~-O3~).
+
+*** TODO Support OONI
+
+*** TODO Support Tor
+
+*** TODO Support Blog
+
+*** TODO Support Wiki
+
+Ikiwiki can use the http_auth module to manage logins via REMOTE_USER and can
+take the setup logic from [[https://bitbucket.org/nickdaly/plugserver/src/tip/setup/wiki/][Plug Server's Wiki Setup Scripts]].
+
+*** TODO Support Friendica
+
+*** TODO Support FreedomBuddy
+
+*** TODO Support PageKite
+
+*** TODO Support Tahoe-LAFS
+
+*** TODO Create Generic Service Frameworks
+
+For example, provide a "vpn" command to client services that specifically need
+it so that we can swap out VPN backends at whim.  This would also be handy for
+defining functional dependencies between modules, for when one module needs to
+enable a feature in another module to function correctly.
+
+*** TODO Add MAC Changer to Plinth
+
+Bounce any/all active interfaces to come up with new MAC addresses.
+
+*** TODO Use Publish to publish Plinth's Source
+
+That'd be useful and convenient, but should exclude the data directory.
+
+*** TODO Start Community Heartbeat Support
+
+Boxes should be able to ping other boxes for health information about their
+mutual connections and other data.  Boxes could run tests on other boxes to make
+sure they're still in one piece and send out communal alerts when a box is found
+to be failing ("Alice has a bad network connection," "Bob's sending out
+malware!").
+
+Perhaps start with distributing ~/etc~ backups, key(ring) backups, or time
+syncing.
+
+Might be broken out into a separate heartbeat project.
+
+*** TODO Integrate Tinc into Plinth [0/1]
+
+**** TODO Tinc Testing
+
+http://www.vanheusden.com/linux/tinc_mini_howto.html
+
+*** TODO Divide plinth/modules into modules/available and modules/enabled
+
+Making it look a little more like the Apache configuration will make it easier
+to manage and understand in the future.
+
+*** TODO Create an ~/etc~ Configuration Manager Module
+
+Allows user to roll back and fork their ~/etc~ configuration via /etckeeper/.
+
+How should Plinth refresh its configuration?  On each page load?  Should it
+cache each settings file's values based on the last modified date (akin to
+make)?
+
+The [[*Run%20%3Detc-keeper%20--commit%3D%20Around%20Each%20Action][Run =etc-keeper --commit= Around Each Action]] and [[*Commit%20~/etc~%20Periodically][Commit ~/etc~ Periodically]]
+TODO items will also be included in this module when it's complete.
+
+*** TODO Run =etc-keeper --commit= Around Each Action
+
+Actions change ~/etc~.  To make ~/etc~ manageable, we should commit ~/etc~
+changes before and after running each action.
+
+Committing changes before each action will capture the system's state before the
+action changes things.  This can include changes made *outside* Plinth.
+
+Committing changes after each action will capture the system's state after the
+action changes things.  This should only include changes made *by* Plinth.
+
+Combining both before and after snapshots should allow users to separate changes
+made by Plinth from changes made through other methods.
+
+*** TODO Commit ~/etc~ Periodically
+
+Just automatically commit changes weekly so we can track them over time, to
+prevent them from becoming unmanageable.
 
 ** TODO VPN Support [0/2]
 
@@ -361,17 +590,24 @@ options.
 
 James recommended OpenSwan over the similar StrongSwan.
 
-*** TODO Include Tinc [0/1]
+*** TODO Include Tinc [1/2]
 
-**** TODO Validate Tinc's Suitability [0/4]
+**** TODO Actually Include Tinc.
 
-- [ ] Can Tinc work, now? :: Yes/No
+**** DONE Validate Tinc's Suitability [4/4]
+CLOSED: [2014-01-29 Wed 21:13]
+- State "DONE"       from "TODO"       [2014-01-29 Wed 21:13]
 
-- [ ] Can Tinc work, ever? :: Yes/No
+According to [[http://lists.alioth.debian.org/pipermail/freedombox-discuss/2013-September/005709.html][Guus]] on the "[Freedombox-discuss] [James Vasile] tinc rollout and
+fbox" thread, the answers are as follow:
 
-- [ ] Unpatched Tinc Problems :: (list)
+- [X] Can Tinc work, now? :: Yes
 
-- [ ] Patched Tinc Problems :: (list)
+- [X] Can Tinc work, ever? :: Yes
+
+- [X] Unpatched Tinc Problems :: None.
+
+- [X] Patched Tinc Problems :: All
 
 ***** [2013-08-13 Tue] Nick Daly
 
@@ -402,360 +638,10 @@ Yes, Tinc has [[http://www.tinc-vpn.org/security/][problems]], but they seem to 
 
 #+end_quote
 
-***** [timestamp] (user)
+***** [2014-01-29 Wed] Nick Daly
 
-** TODO Plinth [9/12]
-   - State "DONE"       from "TODO"       [2013-09-29 Sun 18:15]
-
-*** TODO Create a Module Manager Module
-
-It shouldn't be on the user to remove symlinks from plinth/modules to disable
-Owncloud or Owncloud management.  This also makes it possible to include "add"
-and "remove" actions in each module that can run services that need no user
-configuration.
-
-This module should be enabled by default.
-
-*** TODO Create an ~/etc~ Configuration Manager Module
-
-Allows user to roll back and fork their ~/etc~ configuration via /etckeeper/.
-
-*** TODO Add =includeSubDomains= to HSTS Header
-
-This will require lots of debugging and patching for each additional project we
-host.
-
-*** DONE Add HSTS
-    CLOSED: [2013-12-08 Sun 11:55]
-    - State "DONE"       from "TODO"       [2013-12-08 Sun 11:55]
-
-If we can configure HSTS on the first-boot, we should be able to better control
-some MITM attacks, because the client will refuse to load Plinth without HTTPS.
-Of course, this only works if the user uses the same client device over time,
-but not providing this protection is stupid.
-
-*** DONE Make =actions= asynchronous
-    CLOSED: [2013-12-08 Sun 11:53]
-    - State "DONE"       from "TODO"       [2013-12-08 Sun 11:53]
-
-Actions (the action scripts in the /actions directory) are currently
-synchronous, in that Plinth will wait until the action completes to return a
-response.  That's terrible for long running actions, and especially actions that
-take longer than the HTTP request's TTL, as user is brought to an error page
-even though the action is still ongoing.  Make actions asynchronous and alert
-the user when the action completes.
-
-*** DONE Remove old user configuration
-    CLOSED: [2013-12-08 Sun 11:51]
-    - State "DONE"       from "TODO"       [2013-12-08 Sun 11:51]
-
-Since we switched to bcrypt for password storage and since we fixed the user
-creation process, there's no point to keeping the old users database around.
-So, remove it before it's used inappropriately.
-
-*** DONE Provide CherryPy through Apache
-    CLOSED: [2013-09-29 Sun 18:14]
-    - State "DONE"       from "TODO"       [2013-09-29 Sun 18:14]
-
-*** DONE Don't POST password... EVER.
-    CLOSED: [2013-09-29 Sun 18:14]
-    - State "DONE"       from "TODO"       [2013-09-29 Sun 18:14]
-
-We currently post on login fails.
-
-Now irrelevant, as Plinth is behind HTTPS.
-
-*** DONE CherryPy HTTPRedirects Shouldn't Go To 127.0.0.1
-    CLOSED: [2013-09-29 Sun 18:15]
-    - State "DONE"       from "TODO"       [2013-09-29 Sun 18:15]
-
-They shouldn't change the server's name.
-
-Fixed by putting CherryPy behind Apache.
-
-*** DONE Include missing dependencies. [4/4]
-    CLOSED: [2013-09-08 Sun 14:59]
-    - State "DONE"       from "TODO"       [2013-09-08 Sun 14:59]
-    - State "DONE"       from "TODO"       [2013-07-28 Sun 20:14]
-
-- [X] psmisc
-- [X] python2.7
-- [X] libpython2.7
-- [X] sudo
-
-*** DONE Move /build to /vendor
-    CLOSED: [2013-07-28 Sun 20:15]
-    - State "DONE"       from "TODO"       [2013-07-28 Sun 20:12]
-
-Do it for consistency with freedombox-privoxy and freedom-maker.
-
-Update references in:
-
-- plinth/start.sh
-- plinth/Makefile
-
-*** CANCELED Move ./build dependencies to ../
-    CLOSED: [2013-07-28 Sun 14:12]
-    - State "CANCELED"   from "TODO"       [2013-07-28 Sun 14:12] \\
-      Fixing dependency duplication for FBuddy specifically is worth less
-      than moving to .debs, and will break FBuddy for non-FBX installs,
-      anyway.
-
-This'll help unify the dependencies at the file level.
-
-Might not be worth it, as everything's moving to .debs soon.
-
-** DONE Key Report [1/1]
-   CLOSED: [2013-08-01 Thu 22:13]
-   - State "DONE"       from "TODO"       [2013-08-01 Thu 22:13]
-
-*** DONE Create Key/Cert Expiry Reporting Tools
-    CLOSED: [2013-08-01 Thu 22:13]
-    - State "DONE"       from "TODO"       [2013-08-01 Thu 22:13]
-
-[[file:key-report/key-report.py]]
-
-** CANCELED ExMachina [1/1]
-   CLOSED: [2013-10-06 Sun 21:36]
-
-*** CANCELED Security Audit / Hammer Away at ExMachina
-    CLOSED: [2013-10-06 Sun 21:36]
-
-
-* FreedomBox 2.0 [1/7]
-
-Generally Useful, includes service configuration and UI polish.
-
-Infrastructure packages should be available in Debian Testing.
-
-** TODO Plinth [1/14]
-
-Integrate more services.
-
-*** DONE Produce Plinth Debian Package
-    CLOSED: [2013-10-06 Sun 21:34]
-    - State "DONE"       from "TODO"       [2013-10-06 Sun 21:34]
-
-See freedombox-privoxy's "make_deb.sh".
-
-*** TODO Create ~/bin/echo~ and ~/bin/id~ Actions Only While Testing
-
-This will fix a lintian error.  Those actions should be created by the test
-script and they should be removed when the testing is complete.
-
-*** TODO Plinth Handles Missing Actions Gracefully
-
-If an action isn't available, Plinth should handle that failure gracefully and
-not crash or ignore the missing action.
-
-*** TODO Suggest, Don't Depend On, PyContract
-
-This will fix a lintian error.
-
-PyContract is working and stable, but orphaned.  It's handy and helpful, but
-strictly unnecessary.  Specifically, since PyContract makes comments executable,
-it should be invisible when missing:
-
-#+begin_src python
-  try:
-      import contract
-  except ImportError:
-      print("To enable contract checking, install Python Contract.")
-
-  def add_positive(a, b):
-      """Add positive numbers.
-
-      pre:
-          a > 0
-          b > 0
-      inv:
-          hasattr(a, "__add__")
-          hasattr(b, "__add__")
-      post[a, b]:
-          __return__ > a
-          __return__ > b
-          a == __old__.a
-          b == __old__.b
-
-      """
-      return a + b
-
-#+end_src
-
-The contract is checked when pycontract is available and has no functional
-effects when pycontract isn't available (or when Python is run with ~-O3~).
-
-*** TODO Integrate OONI
-
-*** TODO Integrate Tor
-
-*** TODO Integrate Blog
-
-*** TODO Integrate Wiki
-
-Ikiwiki can use the http_auth module to manage logins via REMOTE_USER and can
-take the setup logic from [[https://bitbucket.org/nickdaly/plugserver/src/tip/setup/wiki/][Plug Server's Wiki Setup Scripts]].
-
-*** TODO Integrate Friendica
-
-*** TODO Integrate FreedomBuddy
-
-*** TODO Add MAC Changer to Plinth
-
-Bounce any/all active interfaces to come up with new MAC addresses.
-
-*** TODO Use Publish to publish Plinth's Source
-
-That'd be useful and convenient, but should exclude the data directory.
-
-*** TODO Start Community Heartbeat Support
-
-Boxes should be able to ping other boxes for health information about their
-mutual connections and other data.  Boxes could run tests on other boxes to make
-sure they're still in one piece and send out communal alerts when a box is found
-to be failing ("Alice has a bad network connection," "Bob's sending out
-malware!").
-
-Might be broken out into a separate heartbeat project.
-
-*** TODO Integrate Tinc into Plinth [0/1]
-
-**** TODO Tinc Testing
-
-http://www.vanheusden.com/linux/tinc_mini_howto.html
-
-*** TODO Divide plinth/modules into modules/available and modules/enabled
-
-Making it look a little more like the Apache configuration will make it easier
-to manage and understand in the future.
-
-*** TODO Run =etc-keeper --commit= Before Each Action
-
-Actions change ~/etc~.  To make ~/etc~ manageable, we should commit ~/etc~
-changes before and after running each action.
-
-Committing changes before each action will capture the system's state before the
-action changes things.  This can include changes made *outside* Plinth.
-
-Committing changes after each action will capture the system's state after the
-action changes things.  This should only include changes made *by* Plinth.
-
-Combining both before and after snapshots should allow users to separate changes
-made by Plinth from changes made through other methods.
-
-** TODO FreedomBuddy [0/6]
-
-*** TODO Finish FreedomBuddy UI
-
-*** TODO Move ./build dependencies to ../
-
-This'll help reduce dependency duplication.
-
-Might not be worth it, as everything's moving to .debs soon, anyway.
-
-*** TODO Create Debian Package
-
-*** TODO Split Message Parsing per Message Type
-
-This will allow FBuddy to handle multiple encryption schemes.
-
-*** TODO Split Database Saving/Loading Code into Separate Module
-
-Move the db code into /src/db/(modulename).py.
-
-This'll allow us to support multiple database backends that we can
-preferentially check for data.  LDAP first, shelf second, etc.
-
-*** TODO Add LDAP database backend
-
-** TODO FreedomMaker [2/6]
-
-*** TODO Add fbx to /etc/sudoers?
-
-*** TODO Replace Spinifex Firmware with Libertas-fw package.
-
-*** DONE Debian-Package Freedom Maker
-    CLOSED: [2013-10-06 Sun 21:35]
-    - State "DONE"       from "TODO"       [2013-10-06 Sun 21:35]
-
-*** TODO Novena Support
-
-Must be bumped if Novena unavailable.
-
-*** TODO Get JWChat working. [0/2]
-
-**** TODO Suppport local server connections.
-
-Can clients on the local server exchange messages?
-
-**** TODO Suppport server connections.
-
-Can cilents on the local server exchange messages with remote clients?
-
-*** CANCELED Add "get the wheezy signing key" to FM's README
-    CLOSED: [2013-08-13 Tue 07:46]
-    - State "CANCELED"   from "TODO"       [2013-08-13 Tue 07:46] \\
-      Now that Wheezy's Stable, this is done automagically.
-
-** TODO Key Report [0/2]
-
-*** TODO Automatically write emails for critical and warning keys.
-
-*** TODO Package Key Report
-
-** TODO Infrastructure [0/6]
-
-*** TODO Add Single-Sign-On Support
-
-If each service for each user on the FreedomBox manages its own users and
-passwords, then each service will have completely unrelated usernames and
-passwords for each user.  To avoid password hell, the box should manage accounts
-and passwords /for each service:/ each service should let the box manage logins.
-
-We can do this via the REMOTE_USER request header: Apache can handle this header
-through [[https://httpd.apache.org/docs/trunk/en/mod/mod_authnz_ldap.html][LDAP with mod_authnz_ldap]] and [[https://code.google.com/p/mod-auth-external/][PAM with mod-auth-external]] (packaged as
-libapache2-mod-authnz-external), while nginx can handle this header through [[http://web.iti.upv.es/~sto/nginx/][PAM
-with ngx_http_auth_pam_module]] (packaged in Debian) and [[https://github.com/kvspb/nginx-auth-ldap][LDAP with nginx-auth-ldap]]
-(not packaged in Debian).
-
-Now, each service just needs to support the REMOTE_USER header.  Adopting this
-method should make it easier to transition to using PGP keys as authenticators
-later: the LDAP system should be able to associate system-level accounts with
-PGP keys.
-
-*** TODO Use FreedomBuddy and/or Tinc to connect all services.
-
-*** TODO Glue Pieces Together
-
-*** TODO Deliver FreedomBox Debian Package
-
-*** TODO Improve GNUTLS
-
-*** TODO Improve Firefox to handle PGP-certified-X509-certs
-
-*** TODO Include a Smarter MAC Changer
-
-Rely on something like this:
-
-https://github.com/Boruch-Baum/mac_changer_choice
-
-Make sure it's packaged, though.
-
-** TODO Documentation [0/4]
-
-*** TODO Clarify Authentication vs Authorization in the System
-
-*** TODO Clean up FBF Wiki
-
-*** TODO Coordinate End User Documentation
-
-*** TODO Update FBF.org Style for Butterfly Logo
-
-** CANCELED ExMachina [1/1]
-   CLOSED: [2013-10-06 Sun 21:35]
-
-*** CANCELED Package ExMachina
-    CLOSED: [2013-10-06 Sun 21:35]
+I just remembered that someone mentioned these issues were fixed in a
+1.something Tinc release...  Where in Pete's name on the mailing list was that?
 
 
 * FreedomBox 3.0 [0/2]
@@ -768,7 +654,7 @@ Viable upgrade paths must exist between 2.0 and 3.0.
 
 *** TODO Generally Disable Logging
 
-FreedomBoxes shouldn't be able to compromise previous end users after they're
+FreedomBoxes shouldn't be able to compromise previous end users after the box is
 affected by malware.
 
 ** TODO Plinth [0/1]
@@ -784,18 +670,13 @@ which depends on Owncloud).
 
 These todo items aren't currently scheduled for any milestone.
 
-** TODO Infrastructure [0/4]
+** TODO Infrastructure [0/3]
 
 *** TODO Client Applications
 
 The system as a whole would be easiest to manage if we were able to provide
 recommended client-device applications as well, though nothing more than a
-web-browser should be necessary.
-
-*** TODO Universal Password Management
-
-All the FreedomBox services should authenticate users against a single list of
-passwords.  This can be solved via LDAP and shell-level accounts, for example.
+web-browser with identity management should be necessary.
 
 *** TODO Automatic Performance Benchmarking and ETA Estimation
 
@@ -819,7 +700,7 @@ The Orange Duck provided a beautiful [[http://www.theorangeduck.com/page/synchro
 be upstreamed into a PEP so it's available everywhere.  Then, Plinth (and other
 projects) should use it for their synchronized sections.
 
-** TODO FreedomMaker [0/1]
+** TODO Freedom Maker [0/1]
 
 *** TODO Make Freedom Maker Smarter
 
@@ -834,6 +715,9 @@ Break out devices by type:
 1. DreamPlug v1
 2. RaspberryPi
 3. VirtualBox Image
+
+These capabilities can go into FreedomBox Setup if they can be detected
+dynamically.
 
 
 * Theory [0/1]
