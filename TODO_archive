@@ -15,6 +15,11 @@ one another for context.
 
 * FreedomBox 1.0
 
+** ExMachina [1/1]
+
+*** CANCELED Security Audit / Hammer Away at ExMachina
+CLOSED: [2013-10-06 Sun 21:36]
+
 ** FreedomBuddy [2/2]
 
 *** DONE Finish FreedomBuddy UI
@@ -119,6 +124,61 @@ need to mess with /etc/fstab at all.
 
 [[file:freedom-maker/Makefile::image: $(STAMP)-rootfs-$(ARCHITECTURE)]]
 
+** Infrastructure [1/1]
+
+*** DONE Fix DreamPlug MAC Addresses
+CLOSED: [2014-01-30 Thu 21:54]
+- State "DONE"       from "TODO"       [2014-01-30 Thu 21:54]
+
+Reflashing the DreamPlug's bootloader erases the interface MAC addresses.  We
+should either save the MAC addresses or re-generate correct MAC addresses for
+the DreamPlug.
+
+If you're affected by this issue, you'll see these errors:
+
+#+begin_example
+  Internet Systems Consortium DHCP Client 4.2.4
+  Copyright 2004-2012 Internet Systems Consortium.
+  All rights reserved.
+  For info, please visit https://www.isc.org/software/dhcp/
+
+  RTNETLINK answers: Cannot assign requested address
+  Listening on LPF/eth1/00:00:00:00:00:00
+  Sending on   LPF/eth1/00:00:00:00:00:00
+  Sending on   Socket/fallback
+  DHCPDISCOVER on eth1 to 255.255.255.255 port 67 interval 8
+  send_packet: Network is down
+  dhclient.c:1909: Failed to send 300 byte long packet over eth1 interface.
+  receive_packet failed on eth1: Network is down
+
+#+end_example
+
+The key indicator of this error is seeing this line when running ~ifup~:
+
+: receive_packet failed on eth1: Network is down
+
+To correct this, we'll need to set the MAC address for each of the available
+interfaces.  The most obvious way to do this is probably through adding a line
+to each interface's stanza in ~/etc/network/interfaces~ that sets the MAC
+address:
+
+: hwaddress ether 00:00:00:00:00:01
+
+Or, we can just use something like ~macchanger~:
+
+: macchanger -a eth1
+
+Or, since macchanger has no knowledge of ~/etc/network/interfaces~, we can just
+add random data ourselves.
+
+** Key Report [1/1]
+
+*** DONE Create Key/Cert Expiry Reporting Tools
+CLOSED: [2013-08-01 Thu 22:13]
+- State "DONE"       from "TODO"       [2013-08-01 Thu 22:13]
+
+[[file:key-report/key-report.py]]
+
 ** Plinth [9/9]
 CLOSED: [2014-01-29 Wed 22:25]
 - State "DONE"       from "TODO"       [2014-01-29 Wed 22:25]
@@ -202,19 +262,6 @@ CLOSED: [2013-07-28 Sun 14:12]
 This'll help unify the dependencies at the file level.
 
 Might not be worth it, as everything's moving to .debs soon.
-
-** Key Report [1/1]
-
-*** DONE Create Key/Cert Expiry Reporting Tools
-CLOSED: [2013-08-01 Thu 22:13]
-- State "DONE"       from "TODO"       [2013-08-01 Thu 22:13]
-
-[[file:key-report/key-report.py]]
-
-** ExMachina [1/1]
-
-*** CANCELED Security Audit / Hammer Away at ExMachina
-CLOSED: [2013-10-06 Sun 21:36]
 
 
 * FreedomBox 2.0
