@@ -334,7 +334,7 @@ preferentially check for data.  LDAP first, shelf second, etc.
 - [ ] HTTPS controller rejects HTTP connections.
 - [ ] HTTPS controller requires REMOTE_USER.
 
-** TODO Infrastructure [0/9]
+** TODO Infrastructure [0/11]
 
 *** TODO Include DHCP Server
 
@@ -343,6 +343,11 @@ preferentially check for data.  LDAP first, shelf second, etc.
 For this to be successful, users must be able to manage the system without
 loggging into the system.  If we must log into the system to manage it while
 building it, it's not release-ready.
+
+
+*** TODO Remove or Disable "root" Account.
+
+*** TODO Remove or Disable "fbx" Account.
 
 *** TODO Use FreedomBuddy and/or Tinc to connect all services.
 
