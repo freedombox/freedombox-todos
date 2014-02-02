@@ -109,7 +109,7 @@ Nick Daly's master branch is the current root.
 The VM will be pre-configured to make development and testing straightforward.
 
 
-* FreedomBox 1.0 [0/5]
+* FreedomBox 1.0 [0/3]
 
 A dedicated hacker's release.  All the pieces are there, but not necessarily
 integrated as well as they should be.
@@ -119,25 +119,14 @@ integrated as well as they should be.
 *** TODO Write Developer Documentation
 
 Take the current state of the FBX and write up how to use all the parts
-together.
+together.  Include notes on how to create services.  Include notes on who
+manages each of:
 
-** TODO FreedomBuddy [0/2]
+- availability (FBuddy)
+- authentication (Apache)
+- authorization (OS-level users and groups)
 
-*** TODO Write FreedomBuddy Threat Model
-:PROPERTIES:
-:Attachments: fbuddy-threat-model
-:ID:       fc7e9d5e-7db7-4b7c-9efa-f5ca23d0eff5
-:END:
-
-- http://wiki.openitp.org/peerreviewboard:start
-
-- [[file:data/fc/7e9d5e-7db7-4b7c-9efa-f5ca23d0eff5/fbuddy-threat-model.org][FreedomBuddy Threat Model]]
-
-*** TODO Add Contracts to Functions.
-
-Use PyContract to verify functional contracts.
-
-** TODO Freedom Maker [0/1]
+** TODO Infrastructure [0/3]
 
 *** TODO Add Single Sign On Support
 
@@ -156,16 +145,15 @@ libapache2-mod-authnz-external), while nginx can handle this header through [[ht
 with ngx_http_auth_pam_module]] (packaged in Debian) and [[https://github.com/kvspb/nginx-auth-ldap][LDAP with nginx-auth-ldap]]
 (not packaged in Debian).
 
+The authorization process should be based on user groups ("Require Group
+Wiki").  It's up to the individual service to decide what it wants to make
+available to the user: either a shared resource (wiki) or a single service per
+user (FBuddy).
+
 Now, each service just needs to support the REMOTE_USER header.  Adopting this
 method should make it easier to transition to using PGP keys as authenticators
 later: the LDAP system should be able to associate system-level accounts with
 PGP keys.
-
-** TODO Infrastructure [1/4]
-
-*** TODO Automatically Set Time on First Boot
-
-Prompt user to verify time.
 
 *** TODO Determine Where Smooth Upgrade Paths Exist
 
@@ -180,8 +168,7 @@ beyond, from 2.0 to 3.0 and beyond, or only from 3.0 and beyond?
 At least one service should work with Plinth and use the SSO system, like the
 wiki project.
 
-** TODO Plinth [0/1]
-- State "DONE"       from "TODO"       [2013-09-29 Sun 18:15]
+** TODO Plinth [0/2]
 
 *** TODO Create a Module Manager Module
 
@@ -192,8 +179,12 @@ configuration.
 
 This module should be enabled by default.
 
+*** TODO Automatically Set Time on First Boot
 
-* FreedomBox 2.0 [0/8]
+Prompt user to verify time.
+
+
+* FreedomBox 2.0 [0/9]
 
 Generally Useful, includes service configuration and UI polish.
 
@@ -209,15 +200,50 @@ Infrastructure packages should be available in Debian Testing.
 
 *** TODO Update FBF.org Style for Butterfly Logo
 
-** TODO FreedomBox Setup [0/1]
+** TODO Freedom Maker [0/1]
+
+*** TODO Use Official Debian Archives Only
+
+Depends on:
+
+- [[*Deliver%20FreedomBox%20Setup%20Debian%20Package][Deliver FreedomBox Setup Debian Package]]
+- [[*Deliver%20FreedomBuddy%20Debian%20Package][Deliver FreedomBuddy Debian Package]]
+
+** TODO FreedomBox Setup [0/2]
 
 *** TODO Deliver FreedomBox Setup Debian Package
 
-** TODO FreedomBuddy [0/7]
+*** TODO Make sure the First Boot Process Meets Design Docs
 
-*** TODO Finish Basic FreedomBuddy Functionality [0/2]
+1. User plugs ethernet cord into computer and DreamPlug's inside ethernet port.
+2. User plugs in and boots DreamPlug.
+3. First boot process completes, DreamPlug restarts.
+4. User logs into Plinth and configures admin accounts, certificates, and
+   networking (if necessary).  Requires dhcp-server.
+5. User replugs ethernet cord into DreamPlug and router.
+6. User uses FreedomBox normally.
 
-**** TODO Finish Introduction System
+Depends on [[*Teach%20Plinth%20to%20Manage%20Networking][Teach Plinth to Manage Networking]].
+
+** TODO FreedomBuddy [0/11]
+
+*** TODO Include in FreedomBox Image
+
+*** TODO Write FreedomBuddy Threat Model
+:PROPERTIES:
+:Attachments: fbuddy-threat-model
+:ID:       fc7e9d5e-7db7-4b7c-9efa-f5ca23d0eff5
+:END:
+
+- http://wiki.openitp.org/peerreviewboard:start
+
+- [[file:data/fc/7e9d5e-7db7-4b7c-9efa-f5ca23d0eff5/fbuddy-threat-model.org][FreedomBuddy Threat Model]]
+
+*** TODO Add Contracts to Functions.
+
+Use PyContract to verify functional contracts.
+
+*** TODO Finish Introduction System
 
 1. Sender exports public key to file.
 2. Sender exports signed location message to file.
@@ -227,7 +253,7 @@ Infrastructure packages should be available in Debian Testing.
 6. Receiver imports public key.
 7. Receiver verifies and imports signed location message.
 
-**** TODO Add Default Services [0/3]
+*** TODO Add Default Services [0/3]
 
 Make a default set of services available to make it easy for folks to start
 hosting services for someone else.  It could be a sort of "add a new user"
@@ -243,18 +269,18 @@ contain the current default services:
 - http monitor
 - cli monitor
 
-***** TODO Load Default Services
+**** TODO Load Default Services
 
 If default services aren't found in the saved data, they're read from the config
 file.
 
-<***** TODO Reject "Default" Key Updates
+**** TODO Reject "Default" Key Updates
 
 The "Default" key is a special, protected, key (maybe 0, maybe "default") for
 which all external service updates are rejected, in the same way the
 "-update-time" service suffix is protected.
 
-***** TODO Copy Default Services when Adding a New Key
+**** TODO Copy Default Services when Adding a New Key
 
 The services you want to host for other people are copied to their service list
 whenever a new key is added.
@@ -286,13 +312,7 @@ Else:
 
 Users must specify a friendly name for Servers.
 
-*** TODO Move ./build dependencies to ../
-
-This'll help reduce dependency duplication.
-
-Might not be worth it, as everything's moving to .debs soon, anyway.
-
-*** TODO Deliver Debian Package
+*** TODO Deliver FreedomBuddy Debian Package
 
 *** TODO Split Message Parsing per Encryption Method
 
@@ -307,19 +327,16 @@ preferentially check for data.  LDAP first, shelf second, etc.
 
 *** TODO Add LDAP database backend
 
-** TODO Freedom Maker [4/5]
+*** TODO Add REMOTE_USER Authentication [0/4]
 
-*** TODO Get JWChat working. [0/2]
+- [ ] Put FreedomBuddy behind Apache.
+- [ ] Apache config requires users in freedombuddy service group.
+- [ ] HTTPS controller rejects HTTP connections.
+- [ ] HTTPS controller requires REMOTE_USER.
 
-**** TODO Suppport local server connections.
+** TODO Infrastructure [0/9]
 
-Can clients on the local server exchange messages?
-
-**** TODO Suppport server connections.
-
-Can cilents on the local server exchange messages with remote clients?
-
-** TODO Infrastructure [0/7]
+*** TODO Include DHCP Server
 
 *** TODO Use NoLogin Shell for User Accounts
 
@@ -338,8 +355,6 @@ say "connect to Joe" and have that command mean anything useful.
 
 *** TODO Improve GNUTLS
 
-*** TODO Improve Firefox to handle PGP-certified-X509-certs
-
 *** TODO Include a Smarter MAC Changer
 
 Rely on something like this:
@@ -348,9 +363,25 @@ https://github.com/Boruch-Baum/mac_changer_choice
 
 Make sure it's packaged, though.
 
+*** TODO Teach Apache to use PGP keys for Client Authentication
+
+*** TODO Teach FireFox to use PGP keys for Server Authentication
+
+Maybe we can fake this by teaching Firefox to handle PGP-certified-X509-certs?
+
+** TODO JWChat [0/2]
+
+*** TODO Suppport local server connections.
+
+Can clients on the local server exchange messages?
+
+*** TODO Suppport server connections.
+
+Can cilents on the local server exchange messages with remote clients?
+
 ** TODO Key Report [0/3]
 
-*** TODO Automatically write emails for critical and warning keys.
+*** TODO Automatically Message Critical and Warning Key Owners
 
 *** WAIT Package Key Report
 - State "WAIT"       from "TODO"       [2014-01-29 Wed 20:33] \\
@@ -361,9 +392,14 @@ Make sure it's packaged, though.
 The output is intended for other utilities and isn't human readable right now.
 There should be such a human-friendly mode.
 
-** TODO Plinth [1/23]
+** TODO Plinth [0/23]
 
-Integrate more services.
+Support more services as Plinth modules.  Make sure they:
+
+- Work only over HTTPS,
+- Defer authorization to Apache's REMOTE_USERs.
+
+*** TODO Teach Plinth to Manage Networking
 
 *** TODO Add =includeSubDomains= to HSTS Header
 
@@ -522,6 +558,19 @@ made by Plinth from changes made through other methods.
 
 Just automatically commit changes weekly so we can track them over time, to
 prevent them from becoming unmanageable.
+
+** TODO Publish [0/4]
+
+*** TODO Add ~design~ Directory Support
+
+*** TODO Make sure it works in Debian Testing.
+
+*** TODO Release Debian Package
+
+*** TODO Add a Deploy Action
+
+This action copies Publish to a subdirectory of the current directory and adds a
+startup action to ~/etc/project-publish.d/~.
 
 ** TODO VPN Support [0/2]
 

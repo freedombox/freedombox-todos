@@ -20,23 +20,6 @@ one another for context.
 *** CANCELED Security Audit / Hammer Away at ExMachina
 CLOSED: [2013-10-06 Sun 21:36]
 
-** FreedomBuddy [2/2]
-
-*** DONE Finish FreedomBuddy UI
-CLOSED: [2013-07-28 Sun 14:12]
-- State "DONE"       from "TODO"       [2013-07-28 Sun 14:12]
-
-*** CANCELED Move ./build dependencies to ../
-CLOSED: [2013-07-28 Sun 14:12]
-- State "CANCELED"   from "TODO"       [2013-07-28 Sun 14:12] \\
-  Fixing dependency duplication for FBuddy specifically is worth less
-  than moving to .debs, and will break FBuddy for non-FBX installs,
-  anyway.
-
-This'll help unify the dependencies at the file level.
-
-Might not be worth it, as everything's moving to .debs soon.
-
 ** Freedom Maker [10/10]
 
 *** DONE Create target specific /etc/network/interfaces
@@ -123,6 +106,25 @@ Parted's really useful.  This means we can forego using a USB device and not
 need to mess with /etc/fstab at all.
 
 [[file:freedom-maker/Makefile::image: $(STAMP)-rootfs-$(ARCHITECTURE)]]
+
+** FreedomBox Setup [0/0]
+
+** FreedomBuddy [2/2]
+
+*** DONE Finish FreedomBuddy UI
+CLOSED: [2013-07-28 Sun 14:12]
+- State "DONE"       from "TODO"       [2013-07-28 Sun 14:12]
+
+*** CANCELED Move ./build dependencies to ../
+CLOSED: [2013-07-28 Sun 14:12]
+- State "CANCELED"   from "TODO"       [2013-07-28 Sun 14:12] \\
+  Fixing dependency duplication for FBuddy specifically is worth less
+  than moving to .debs, and will break FBuddy for non-FBX installs,
+  anyway.
+
+This'll help unify the dependencies at the file level.
+
+Might not be worth it, as everything's moving to .debs soon.
 
 ** Infrastructure [1/1]
 
@@ -271,7 +273,7 @@ Might not be worth it, as everything's moving to .debs soon.
 *** CANCELED Package ExMachina
 CLOSED: [2013-10-06 Sun 21:35]
 
-** FreedomMaker [4/4]
+** Freedom Maker [4/4]
 
 *** DONE Replace Spinifex Firmware with Libertas-fw package.
 CLOSED: [2014-01-29 Wed 22:02]
@@ -289,6 +291,17 @@ CLOSED: [2014-01-29 Wed 22:02]
 CLOSED: [2013-08-13 Tue 07:46]
 - State "CANCELED"   from "TODO"       [2013-08-13 Tue 07:46] \\
   Now that Wheezy's Stable, this is done automagically.
+
+** FreedomBuddy [1/1]
+
+*** CANCELED Move ./build dependencies to ../
+CLOSED: [2014-02-02 Sun 14:34]
+- State "CANCELED"   from "TODO"       [2014-02-02 Sun 14:34] \\
+  Unnecessary after it's packaged properly.
+
+This'll help reduce dependency duplication.
+
+Might not be worth it, as everything's moving to .debs soon, anyway.
 
 ** Plinth [1/1]
 
