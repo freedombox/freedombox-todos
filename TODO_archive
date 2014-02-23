@@ -311,3 +311,28 @@ CLOSED: [2013-10-06 Sun 21:34]
 
 See freedombox-privoxy's "make_deb.sh".
 
+
+* FreedomBox Pre-1.0 [1/1]
+:PROPERTIES:
+:ARCHIVE_TIME: 2014-02-23 Sun 12:35
+:ARCHIVE_FILE: ~/my/creations/source/freedombox/TODO
+:ARCHIVE_CATEGORY: TODO
+:END:
+
+** DONE Infrastructure [1/1]
+CLOSED: [2014-02-23 Sun 12:35]
+- State "DONE"       from "TODO"       [2014-02-23 Sun 12:35]
+
+*** DONE Release Development VM
+CLOSED: [2014-02-23 Sun 12:35]
+- State "DONE"       from "TODO"       [2014-02-23 Sun 12:35]
+
+The VM will be pre-configured to make development and testing straightforward.
+
+Basically, this is a standard image with the desktop task selected.
+
+Now easy, with this build command:
+
+: CUSTOMIZE="development" make virtualbox-image
+
+

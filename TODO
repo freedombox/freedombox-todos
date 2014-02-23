@@ -1,4 +1,4 @@
-# -*- mode: org; mode: auto-fill; fill-column: 80; mode: org-indent; -*-
+# -*- mode: org; mode: auto-fill; fill-column: 80; mode: org-indent; mode: visual-line -*-
 
 #+TODO: TODO(t) WAIT(w@/!) | DONE(d!) CANCELED(c@)
 
@@ -98,16 +98,6 @@ Mentions keys that will expire soon.
 Nick Daly's master branch is the current root.
 
 - [[https://gitorious.org/key-report/][Nick Daly's Branch (gitorious)]], [[https://github.com/NickDaly/key-report/][(github)]]
-
-
-* FreedomBox Pre-1.0 [0/1]
-
-** TODO Infrastructure [0/1]
-
-*** TODO Release Development VM
-
-The VM will be pre-configured to make development and testing straightforward.
-
 
 * FreedomBox 1.0 [0/3]
 
