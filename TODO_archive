@@ -13,6 +13,30 @@ any deeper, because those start including subtasks which are often dependent on
 one another for context.
 
 
+* FreedomBox Pre-1.0 [1/1]
+:PROPERTIES:
+:ARCHIVE_TIME: 2014-02-23 Sun 12:35
+:ARCHIVE_FILE: ~/my/creations/source/freedombox/TODO
+:ARCHIVE_CATEGORY: TODO
+:END:
+
+** DONE Infrastructure [1/1]
+CLOSED: [2014-02-23 Sun 12:35]
+- State "DONE"       from "TODO"       [2014-02-23 Sun 12:35]
+
+*** DONE Release Development VM
+CLOSED: [2014-02-23 Sun 12:35]
+- State "DONE"       from "TODO"       [2014-02-23 Sun 12:35]
+
+The VM will be pre-configured to make development and testing straightforward.
+
+Basically, this is a standard image with the desktop task selected.
+
+Now easy, with this build command:
+
+: CUSTOMIZE="development" make virtualbox-image
+
+
 * FreedomBox 1.0
 
 ** ExMachina [1/1]
@@ -181,9 +205,48 @@ CLOSED: [2013-08-01 Thu 22:13]
 
 [[file:key-report/key-report.py]]
 
-** Plinth [9/9]
+** Plinth [10/10]
 CLOSED: [2014-01-29 Wed 22:25]
 - State "DONE"       from "TODO"       [2014-01-29 Wed 22:25]
+
+*** DONE Create a Module Manager Module
+CLOSED: [2014-03-02 Sun 17:21]
+- State "DONE"       from "TODO"       [2014-03-02 Sun 17:21]
+:PROPERTIES:
+:ARCHIVE_TIME: 2014-03-02 Sun 17:23
+:ARCHIVE_FILE: ~/my/creations/source/freedombox/TODO
+:ARCHIVE_OLPATH: FreedomBox 1.0 [0/3]/Plinth [1/3]
+:ARCHIVE_CATEGORY: TODO
+:ARCHIVE_TODO: DONE
+:END:
+
+It shouldn't be on the user to remove symlinks from plinth/modules to disable
+Owncloud or Owncloud management.  This also makes it possible to include "add"
+and "remove" actions in each module that can run services that need no user
+configuration.
+
+This module should be enabled by default.
+
+**** [2014-03-02 Sun 16:54 UTC] Nick Daly
+
+I figured out what was preventing me from testing James Valleroy's Module
+Manager: I forgot to apply the [[http://patch-tracker.debian.org/patch/series/view/plinth/0.3.0.0.git.20131229-1/program-paths.diff][program-path]] and [[http://patch-tracker.debian.org/patch/series/view/plinth/0.3.0.0.git.20131229-1/actions-path.diff][actions-path]] diffs before
+installing from the source directory.
+
+Now, from a clean VM image, I just need to start Plinth manually before
+navigating to (server)/plinth, and everything appears to work.
+
+Regarding the module manager itself, it doesn't seem to detect the fact that
+owncloud was enabled.  So, it seems there's still some work to be done there,
+but maybe I was on the wrong branch when it was installed.  Trying again.
+
+**** [2014-03-02 Sun 23:19 UTC] Nick Daly
+
+Testing from a clean VM and *using the right branch*, everything works
+beautifully.
+
+We still need to make Plinth recognize changes to the module list, but the
+basics are there.  Merged [[https://github.com/NickDaly/Plinth/pull/59][pull request #59]].
 
 *** DONE Add HSTS
 CLOSED: [2013-12-08 Sun 11:55]
@@ -303,7 +366,7 @@ This'll help reduce dependency duplication.
 
 Might not be worth it, as everything's moving to .debs soon, anyway.
 
-** Plinth [1/1]
+** Plinth [3/3]
 
 *** DONE Produce Plinth Debian Package
 CLOSED: [2013-10-06 Sun 21:34]
@@ -311,28 +374,54 @@ CLOSED: [2013-10-06 Sun 21:34]
 
 See freedombox-privoxy's "make_deb.sh".
 
+*** DONE Create ~/bin/echo~ and ~/bin/id~ Actions Only While Testing
+CLOSED: [2014-03-02 Sun 17:25]
+- State "DONE"       from "TODO"       [2014-03-02 Sun 17:25]
 
-* FreedomBox Pre-1.0 [1/1]
-:PROPERTIES:
-:ARCHIVE_TIME: 2014-02-23 Sun 12:35
-:ARCHIVE_FILE: ~/my/creations/source/freedombox/TODO
-:ARCHIVE_CATEGORY: TODO
-:END:
+This will fix a lintian error.  Those actions should be created by the test
+script and they should be removed when the testing is complete.
 
-** DONE Infrastructure [1/1]
-CLOSED: [2014-02-23 Sun 12:35]
-- State "DONE"       from "TODO"       [2014-02-23 Sun 12:35]
+*** DONE Suggest, Don't Depend On, PyContract
+CLOSED: [2014-03-02 Sun 17:25]
+- State "DONE"       from "TODO"       [2014-03-02 Sun 17:25]
 
-*** DONE Release Development VM
-CLOSED: [2014-02-23 Sun 12:35]
-- State "DONE"       from "TODO"       [2014-02-23 Sun 12:35]
+This will fix a lintian error.
 
-The VM will be pre-configured to make development and testing straightforward.
+PyContract is working and stable, but orphaned.  It's handy and helpful, but
+strictly unnecessary.  Specifically, since PyContract makes comments executable,
+it should be invisible when missing:
 
-Basically, this is a standard image with the desktop task selected.
+#+begin_src python
+  try:
+      import contract
+  except ImportError:
+      print("To enable contract checking, install Python Contract.")
 
-Now easy, with this build command:
+  def add_positive(a, b):
+      """Add positive numbers.
 
-: CUSTOMIZE="development" make virtualbox-image
+      PyContract automatically evaluates these commetns for truthiness
+      during execution.
 
+      pre:         # before calling add_positive
+          a > 0
+          b > 0
+
+      post[a, b]:  # after calling add_positive
+          __return__ > a
+          __return__ > b
+          a == __old__.a
+          b == __old__.b
+
+      inv:         # before and after calling add_positive
+          hasattr(a, "__add__")
+          hasattr(b, "__add__")
+
+      """
+      return a + b
+
+#+end_src
+
+The contract is checked when pycontract is available and has no functional
+effects when pycontract isn't available (or when Python is run with ~-O3~).
 
