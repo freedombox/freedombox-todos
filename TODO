@@ -636,7 +636,7 @@ easier (i.e., create a Plinth-Owncloud module that contains modules/owncloud.py,
 which depends on Owncloud).
 
 
-* Unscheduled [0/2]
+* Unscheduled [0/3]
 
 These todo items aren't currently scheduled for any milestone.
 
@@ -688,6 +688,18 @@ Break out devices by type:
 
 These capabilities can go into FreedomBox Setup if they can be detected
 dynamically.
+
+** TODO Plinth [0/1]
+
+*** TODO Teach Plinth to Manage a Mail Server?
+
+Difficult: necessary MX records aren't decentralized or zero-configuration friendly.
+
+A few instructions:
+
+http://arstechnica.com/information-technology/2014/02/how-to-run-your-own-e-mail-server-with-your-own-domain-part-1/
+
+http://arstechnica.com/information-technology/2014/03/taking-e-mail-back-part-2-arming-your-server-with-postfix-dovecot/
 
 
 * Theory [0/1]
