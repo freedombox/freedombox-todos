@@ -380,12 +380,14 @@ Can cilents on the local server exchange messages with remote clients?
 The output is intended for other utilities and isn't human readable right now.
 There should be such a human-friendly mode.
 
-** TODO Plinth [0/22]
+** TODO Plinth [0/23]
 
 Support more services as Plinth modules.  Make sure they:
 
 - Work only over HTTPS,
 - Defer authorization to Apache's REMOTE_USERs.
+
+*** TODO Run as www-data user.
 
 *** TODO Reorganize Plinth's Module Structure
 
