@@ -387,7 +387,10 @@ Support more services as Plinth modules.  Make sure they:
 - Work only over HTTPS,
 - Defer authorization to Apache's REMOTE_USERs.
 
-*** TODO Run as www-data user.
+*** TODO Run as non-root user.
+
+Probably shouldn't even run as ~www-data~, but as ~plinth~ user, to
+compartmentalize permissions as much as possible.
 
 *** TODO Reorganize Plinth's Module Structure
 
