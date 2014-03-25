@@ -100,6 +100,37 @@ Nick Daly's master branch is the current root.
 - [[https://gitorious.org/key-report/][Nick Daly's Branch (gitorious)]], [[https://github.com/NickDaly/key-report/][(github)]]
 
 
+* FreedomBox 0.3
+
+** Infrastructure [0/3]
+
+*** TODO Disable Known Passwords
+
+Switch to SSH certificate-only login.
+
+#+begin_quote
+Change plinth to make it possible to create UNIX users using plinth, and upload
+a ssh certificate to be able to log in as this user.  And allow the user sudo
+access as an option.  If we do this, there will be no need for ssh login using
+passwords.  Another option is to use plinth to set the unix password, and not
+set any passwords by default.
+
+#+end_quote
+
+*** TODO Document Service Ports
+
+: # lsof -i|grep LISTEN
+: # netstat -pant
+
+Which interfaces should each of those services be listening on?
+
+*** TODO Lock Down Service Ports.
+
+** Tor [0/1]
+
+*** TODO Enable Scramblesuit
+
+
 * FreedomBox 1.0 [0/3]
 
 A dedicated hacker's release.  All the pieces are there, but not necessarily
