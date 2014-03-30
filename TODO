@@ -100,9 +100,10 @@ Nick Daly's master branch is the current root.
 - [[https://gitorious.org/key-report/][Nick Daly's Branch (gitorious)]], [[https://github.com/NickDaly/key-report/][(github)]]
 
 
-* FreedomBox 0.3
 
-** Infrastructure [0/3]
+* FreedomBox 0.3 [0/3]
+
+** TODO Infrastructure [0/4]
 
 *** TODO Disable Known Passwords
 
@@ -119,6 +120,10 @@ set any passwords by default.
 
 *** TODO Document Service Ports
 
+- What ports are open?
+- What services do those ports support?
+- What features do those service/port combinations enable?
+
 : # lsof -i|grep LISTEN
 : # netstat -pant
 
@@ -126,9 +131,39 @@ Which interfaces should each of those services be listening on?
 
 *** TODO Lock Down Service Ports.
 
-** Tor [0/1]
+Each of those ports should be controlled by the service's configuration in Plinth.
 
-*** TODO Enable Scramblesuit
+For example, if a feature is disabled in Plinth, the associated port should be
+closed whether or not the service closes the port.
+
+The UI might appear like:
+
+- [X] XMPP
+  - [X] Enable Web Interface
+  - [ ] Enable In-Band Registration
+  - [ ] Enable Server-to-Server Communication
+
+When the "Enable Server-to-Server Communication" option is unchecked, the beam
+ports are closed.  When the option is checked, the beam ports are open.  If the
+option is disabled (inactive), the user has customized the firewall or XMPP in
+ways that Plinth can't represent.
+
+Each configuration option should be enabled only when Plinth can understand the
+configuration well enough to interpret and control it.
+
+*** TODO Firewall Support
+
+** TODO Plinth [0/1]
+
+*** TODO Cross-Cutting Concern (Hook) Support
+
+Firewall support requires cross-cutting concern support, the ability to add
+hooks and listeners to allow the system to react to actions, without needing to
+hardcode all of them.
+
+** TODO Tor [0/2]
+
+*** TODO Add "Route all Traffic through Tor" to Plinth Module.
 
 
 * FreedomBox 1.0 [0/3]
@@ -199,7 +234,7 @@ wiki project.
 Prompt user to verify time.
 
 
-* FreedomBox 2.0 [0/10]
+* FreedomBox 2.0 [0/11]
 
 Generally Useful, includes service configuration and UI polish.
 
@@ -240,7 +275,7 @@ Depends on:
 
 Depends on [[*Teach%20Plinth%20to%20Manage%20Networking][Teach Plinth to Manage Networking]].
 
-** TODO FreedomBuddy [0/11]
+** TODO FreedomBuddy [0/13]
 
 *** TODO Include in FreedomBox Image
 
@@ -349,6 +384,14 @@ preferentially check for data.  LDAP first, shelf second, etc.
 - [ ] HTTPS controller rejects HTTP connections.
 - [ ] HTTPS controller requires REMOTE_USER.
 
+*** TODO Convert to Isis's python-gnupg
+
+I don't trust Vinay's python-gnupg, because it took him forever to fix
+=Popen(shell=True)=, and only two years to actually provide a source repository
+(from v0.3.6 and up).  It also looks like Isis's python-gnupg has diverged
+widely from Vinay's.  We need to unify these at some point.  Sigh.
+
+*** TODO Simplify/Split ~Santiago.init~?
 ** TODO Infrastructure [0/11]
 
 *** TODO Include DHCP Server
@@ -648,6 +691,11 @@ Yes, Tinc has [[http://www.tinc-vpn.org/security/][problems]], but they seem to 
 
 I just remembered that someone mentioned these issues were fixed in a
 1.something Tinc release...  Where in Pete's name on the mailing list was that?
+
+** TODO Tor [0/1]
+
+*** TODO Enable Scramblesuit
+
 
 
 * FreedomBox 3.0 [0/2]
