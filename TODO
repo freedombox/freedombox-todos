@@ -231,7 +231,12 @@ wiki project.
 
 *** TODO Automatically Set Time on First Boot
 
-Prompt user to verify time.
+Prompt user to verify time after detecting it from one of these methods:
+
+- [ ] Detect time when opening IP connection from server.
+- [ ] Detect time by sniffing wifi beacons.
+- [ ] Detect time by sniffing bluetooth beacons.
+- [ ] Detect time by sniffing IP packets and DHCLIENT REQ and ACKs.
 
 
 * FreedomBox 2.0 [0/11]
