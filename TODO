@@ -459,7 +459,7 @@ Can cilents on the local server exchange messages with remote clients?
 The output is intended for other utilities and isn't human readable right now.
 There should be such a human-friendly mode.
 
-** TODO Plinth [0/23]
+** TODO Plinth [0/27]
 
 Support more services as Plinth modules.  Make sure they:
 
@@ -494,8 +494,118 @@ It may be useful to keep enabled in a flat structure (allowing you to swap auth
 methods in and out, for example), but maybe it'd be easier if the modules kept
 the nested structure.
 
-*** TODO Teach Plinth to Manage Networking
+*** TODO Have dependency based modules
 
+Currently there is an numeric order in which each module is loaded. This
+provided by the module itself. This can quickly get out of hand for large number
+of modules, especially if there are developed outside the main repository by
+other developers. Create a system in which module load order is calculated based
+on module inter-dependencies.
+
+Furthermore, many of the currenct dependencies are actually fake. Module
+providing URL /x/y/z has to be dependent on module provding URL /x/y simply
+because of limitation of the current rudimentary path router. Any modern web
+framework does not have this limitation (see for example, bottle, Django). We
+should use one of those frameworks for routing to remove most of the
+dependencies.
+
+*** TODO Use a web framework
+
+There are many pieces in Plinth that are re-inventing the wheel of web
+frameworks. Most of these pieces are rudimentary and have problems that have
+been solved repeatedly elsewhere. This includes path router, forms, simple
+variable storage, MVC, authentication framework, etc. Choosing and using a good
+web framework will lead to fewer bugs, greater flexibility, higher quality and
+more readily available documentation.
+
+There are many such frameworks for Python and many of them allow choosing small
+components while leaving out the rest. This should ease transition.
+
+*** TODO Developer cleanup
+
+To make Plinth an attractive target for more developers to contribute to, it
+needs to have clean and readable code and framework. The following are the areas
+of improvement.
+
+**** TODO Add a HACKING file
+
+Add a HACKING file that explains how to install from git or tarball, how start
+hacking code, debug techniques and any other tips. A developer familiar with
+Python should be able to setup in under 10 minutes and start cooking
+patches. Install and test process should be fun for enthusiats brave enough to
+test git code.
+
+**** TODO Remove use of exec()
+
+Python exec() is being used in many places where it not all that required. Apart
+from resulting in less readable code, it could prove dangerous. All the places
+it is being used, it can be replaced with the use of getattr(), locals() etc.
+
+**** TODO Follow coding standards
+
+Not just any coding standards but *the* Python coding standards. This include
+pep8 and the official Python style guide.
+
+**** TODO Setup a code checking tools
+
+Use and write documentation on Emacs/Vim integration of pylint, pep8 and
+pyflakes. Also setup a simple shell script to run these tools on command line.
+
+**** TODO Have license headers
+
+Although license of each file is clear, it is conventional to have a license
+header in each file. This should ideally also contain the copyright year and
+list of authors.
+
+**** TODO Have better logging framework
+
+The current logging wrapper cripples many of the awesome functionalities
+provided by Python logging module. Python logging is quite nice. Most modules
+play nice with it (including CherryPy). Improve logging so that we retain the
+Python logging module niceties and make every other library we use play into
+it.
+
+**** TODO Get rid of global code
+
+Importing a module should not have side-effects. Currently there is a lot of
+global code that runs in many modules that is problematic. Organize the global
+code into methods and call them explictly. This is almost a necessity for
+writing good test suite.
+
+**** TODO Simplify setup process
+
+The current 'make install' setup does not seem to do enough to actually make
+Plinth work. This is because of the way various paths are being read from
+configuration or as hard-coded (example 'actions') path. Simplify installation
+and make Plinth work immediately after 'make install'. Also simplify path
+configuration. This should also lead to less effort in Debian packaging.
+
+Most Python programs (including daemons) have a much simple way of
+installing. Most of the time it is based on setup.py. Setup.py gives us some
+nice features such as the 'develop' command etc. Write setup.py instead of doing
+most of the work in Makefile.
+
+**** TODO Write a module developer guide
+
+Information on how forms, menus, plugin loading etc. work is rather limited. If
+we are to see an explosion in the number of modules available for Plinth we need
+to write a module developer guide explaining, with tutorials, how to create new
+modules.
+
+**** TODO Cleanup templating
+
+Many modules have quite a bit of html code in them. Improve the situation by
+moving the code to theming/templating system.
+
+**** TODO Better debugging
+
+The following items should help:
+
+***** TODO Ability to run Plinth as non-daemon mode
+***** TODO Ability to Backdoor/Manhole into Plinth
+***** TODO Some documentation on using pdb
+
+*** TODO Teach Plinth to Manage Networking
 *** TODO Add =includeSubDomains= to HSTS Header
 
 This will require lots of debugging and patching for each additional project we
@@ -534,7 +644,13 @@ take the setup logic from [[https://bitbucket.org/nickdaly/plugserver/src/tip/se
 
 *** TODO Support FreedomBuddy
 
-*** TODO Support PageKite
+*** TODO Improve PageKite
+
+Basic module that can setup pagekite now exists. Limitations are that only HTTP
+and SSH services are supported. It only supports pagekite.net account. Explore
+using other FreedomBoxes as frontend servers. Consider migrating the pagekite
+action script to use augeas (or so) instead of directly modifying the
+configuration files.
 
 *** TODO Support Tahoe-LAFS
 
