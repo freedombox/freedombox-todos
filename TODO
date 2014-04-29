@@ -103,7 +103,7 @@ Nick Daly's master branch is the current root.
 
 * FreedomBox 0.3 [0/3]
 
-** TODO Infrastructure [0/4]
+** TODO Infrastructure [1/4]
 
 *** TODO Disable Known Passwords
 
@@ -151,17 +151,27 @@ ways that Plinth can't represent.
 Each configuration option should be enabled only when Plinth can understand the
 configuration well enough to interpret and control it.
 
-*** TODO Firewall Support
+*** DONE Firewall Support
+CLOSED: [2014-04-28 Mon 21:45]
+- State "DONE"       from "TODO"       [2014-04-28 Mon 21:45]
 
-** TODO Plinth [0/1]
+** TODO Plinth [1/2]
 
-*** TODO Cross-Cutting Concern (Hook) Support
+*** DONE Cross-Cutting Concern (Hook) Support
+CLOSED: [2014-04-28 Mon 21:45]
+- State "DONE"       from "TODO"       [2014-04-28 Mon 21:45]
 
 Firewall support requires cross-cutting concern support, the ability to add
 hooks and listeners to allow the system to react to actions, without needing to
 hardcode all of them.
 
-** TODO Tor [0/2]
+*** TODO Use Inheritance Correctly
+
+Subclasses should call super classes' methods as appropriate:
+
+: super(CLASSNAME, self).__init__(*args, **kwargs)
+
+** TODO Tor [0/1]
 
 *** TODO Add "Route all Traffic through Tor" to Plinth Module.
 
