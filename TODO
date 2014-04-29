@@ -155,7 +155,7 @@ configuration well enough to interpret and control it.
 CLOSED: [2014-04-28 Mon 21:45]
 - State "DONE"       from "TODO"       [2014-04-28 Mon 21:45]
 
-** TODO Plinth [1/2]
+** TODO Plinth [1/3]
 
 *** DONE Cross-Cutting Concern (Hook) Support
 CLOSED: [2014-04-28 Mon 21:45]
@@ -170,6 +170,10 @@ hardcode all of them.
 Subclasses should call super classes' methods as appropriate:
 
 : super(CLASSNAME, self).__init__(*args, **kwargs)
+
+*** TODO Move freedombox-setup/firstrun.d to Plinth
+
+That way, all the first run config is in one package.
 
 ** TODO Tor [0/1]
 
