@@ -411,7 +411,7 @@ I don't trust Vinay's python-gnupg, because it took him forever to fix
 widely from Vinay's.  We need to unify these at some point.  Sigh.
 
 *** TODO Simplify/Split ~Santiago.init~?
-** TODO Infrastructure [0/11]
+** TODO Infrastructure [0/15]
 
 *** TODO Include DHCP Server
 
@@ -449,6 +449,22 @@ Make sure it's packaged, though.
 *** TODO Teach FireFox to use PGP keys for Server Authentication
 
 Maybe we can fake this by teaching Firefox to handle PGP-certified-X509-certs?
+
+*** TODO Make SD Card Images Resize Themselves on First Boot
+
+If the primary partition is the only partition on the SD card, and it doesn't
+take up the entire SD card, resize the image to take up the entire SD card on
+the first boot.
+
+*** TODO All Services Notify Listeners on Enable/Disable
+
+So far, only the Owncloud service does this.
+
+*** TODO Enable Automatic Daily Package Updates
+
+*** TODO Update Cron Job Schedule Based on System Load
+
+Record system load, change scheduled job timing based on average system load.
 
 ** TODO JWChat [0/2]
 
@@ -549,12 +565,6 @@ Python should be able to setup in under 10 minutes and start cooking
 patches. Install and test process should be fun for enthusiats brave enough to
 test git code.
 
-**** TODO Remove use of exec()
-
-Python exec() is being used in many places where it not all that required. Apart
-from resulting in less readable code, it could prove dangerous. All the places
-it is being used, it can be replaced with the use of getattr(), locals() etc.
-
 **** TODO Follow coding standards
 
 Not just any coding standards but *the* Python coding standards. This include
@@ -618,6 +628,19 @@ The following items should help:
 ***** TODO Ability to run Plinth as non-daemon mode
 ***** TODO Ability to Backdoor/Manhole into Plinth
 ***** TODO Some documentation on using pdb
+
+**** DONE Remove use of exec()
+CLOSED: [2014-04-29 Tue 21:14]
+- State "DONE"       from "TODO"       [2014-04-29 Tue 21:14]
+
+Python exec() is being used in many places where it not all that required. Apart
+from resulting in less readable code, it could prove dangerous. All the places
+it is being used, it can be replaced with the use of getattr(), locals() etc.
+
+**** TODO Move Plinth's source to =/src=
+
+The top-level directory should be reserved for project structure, not project
+code.
 
 *** TODO Teach Plinth to Manage Networking
 *** TODO Add =includeSubDomains= to HSTS Header
@@ -737,6 +760,11 @@ made by Plinth from changes made through other methods.
 Just automatically commit changes weekly so we can track them over time, to
 prevent them from becoming unmanageable.
 
+*** TODO Add Service Delivery (Connector) UI Support
+
+Users should be able to configure the system they want to serve a service over
+(PageKite, Tor, Public IP, etc.).
+
 ** TODO Publish [0/4]
 
 *** TODO Add ~design~ Directory Support
@@ -839,20 +867,37 @@ A generally usable consumer device.
 
 Viable upgrade paths must exist between 2.0 and 3.0.
 
-** TODO Infrastructure [0/1]
+** TODO Infrastructure [0/2]
 
 *** TODO Generally Disable Logging
 
 FreedomBoxes shouldn't be able to compromise previous end users after the box is
 affected by malware.
 
-** TODO Plinth [0/1]
+*** TODO Offline-Long-Term Key Support
+
+The box user's long term keys shouldn't exist on the box.
+
+** TODO Plinth [0/2]
 
 *** TODO Split Plinth into Multiple Debian Packages
 
 Every (non-core) module should be its own package to make remixing the system
 easier (i.e., create a Plinth-Owncloud module that contains modules/owncloud.py,
 which depends on Owncloud).
+
+*** TODO Survey User for Concerns, Enable/Disable Options Appropriately
+
+Is the user concerned about:
+
+- End user location anonymity?
+- End user identity anonymity?
+- Server location anonymity?
+- Server identity anonymity?
+
+Change default options based on user's answers.  If we can't support a class of
+user, let them know.  Might we also be able to use the geolocation to guess at a
+good set of defaults?
 
 
 * Unscheduled [0/3]
